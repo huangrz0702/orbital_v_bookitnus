@@ -1,6 +1,4 @@
 <template>
-    
-
     <div class="intro" style="text-align: center;">
        <h2>Hello everyone, welcome to <span style="color: olivedrab">BOOK</span><span style="color: purple">it@</span><span style="color: olivedrab">NUS!</span></h2>
        <p style="padding-left:16px">
@@ -23,6 +21,12 @@
     
        </p>
     </div>
-
 </template>
 
+
+
+<script>
+export default {
+  name: 'AboutPage'
+}
+</script>
