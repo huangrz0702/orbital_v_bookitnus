@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import AboutPage from './views/about.vue'
+import AboutPage from './views/About/about.vue'
 import LayoutPage from './layout/index.vue'
 
 export default {
