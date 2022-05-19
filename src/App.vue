@@ -1,15 +1,17 @@
 <template>
   <AboutPage/>
+  <LayoutPage/>
 
 </template>
 
 <script>
 import AboutPage from './views/about.vue'
+import LayoutPage from './layout/index.vue'
 
 export default {
   name: 'App',
   components: {
-    AboutPage
+    AboutPage, LayoutPage
   }
 }
 </script>
