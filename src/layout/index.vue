@@ -4,10 +4,31 @@
       <div class="logo">
         <img src="../assets/image/logo.png" alt="">
       </div>
-      <div class="login/register">
-          <router-link class="link" :to="{ name: 'Login' }">
-            Login/Register
-          </router-link>
+      <nav>
+        <h2>
+          <ul class="nav-list">
+            <li class="active">
+              <span>Home</span>
+              <ul class="son-list">
+                <li>Indiv Facility Pager</li>
+              </ul>
+            </li>
+            <li>
+              <span><router-link to='/blog'>Blog</router-link></span>
+              <ul class="son-list">
+                <li>Blog List Page</li>
+                <li>Search Results</li>
+                <li>Indiv Blog Page</li>
+              </ul>
+            </li>
+          </ul>
+        </h2>
+      </nav>
+      <div>
+        <span></span>
+        <span>
+          Sign In / Register
+        </span>
       </div>
     
     </header>
