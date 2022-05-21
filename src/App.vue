@@ -2,29 +2,28 @@
 <template>
   <div class="app-wrapper">
     <div class="app">
-      <navigationBar />
+        <navigationBar />
       <router-view />
       <Footer />
-
     </div>
   </div>
 </template>
 
 <script>
-//import AboutPage from './views/AboutPage/About.vue'
+//import HomePage from './views/Home.vue'
 //import LayoutPage from './layout/index.vue'
 import navigationBar from './components/Navigation.vue'
 import Footer from './components/Footer.vue'
+//import Home from './views/Home.vue'
 //import SearchMainPage from './views/Search-Main/index.vue'
 
 export default {
   name: 'App',
   components: {
-    //AboutPage,
     //LayoutPage,
     navigationBar,
     Footer,
-
+    
 }
 }
 </script>
