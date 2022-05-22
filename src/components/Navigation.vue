@@ -7,11 +7,12 @@
             </div>
             <div class = "nav-links">
                 <ul>
-                    <router-link class = "link" to = "#">Home</router-link>
+                    <router-link class = "link" to = "/">Home</router-link>
                     <router-link class = "link" to = "#">Book Facilities</router-link>
                     <router-link class = "link" to = "#">Forum</router-link>
                     <router-link class = "link" to = "#">User</router-link>
-                    <router-link class = "link" to = "#">Login/Register</router-link>
+                    <router-link class = "link" to = "/LoginPage">Login</router-link>
+                    <router-link class = "link" to = "/RegisterPage">Register</router-link>
                 </ul>
             </div>
         </div>

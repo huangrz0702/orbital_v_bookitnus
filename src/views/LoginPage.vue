@@ -1,15 +1,14 @@
 <template>
   <main class="Container">
+    <div>
       <section class="form">
-
-          <form class="register" >
-              <p class="login">
-        ALready have an account?
-        <router-link class="router-link" to="/login">Login</router-link>
+        <form class="login" >
+          <p class="register">
+        Don't have an account?
+        <router-link class="router-link" to="/RegisterPage">Register</router-link>
       </p>
-
-            <h2>Register</h2>
-            <div class = "inputBox">
+          <h2>Login</h2>
+          <div class = "input">
             <input
             type="email"
             placeholder="Email"
@@ -27,24 +26,19 @@
           <svg-icon class="icon" iconClass="lock"></svg-icon>
           </div>
 
-            <div class = "input">
-                <input
-                type="place of residence"
-                placeholder="Place of Residence"
-                required/>
-                <svg-icon class="icon" iconClass="house"></svg-icon>
-            </div>
-
-            <input
-                class="btn"
-                type="submit"
-                value="Register" />
-            
-          </form>
-
+          <input class="btn" type="submit" value="Log in" />
+        </form>
       </section>
+    </div>
   </main>
 </template>
+
+<script>
+export default {
+    name: "LoginPage",
+};
+
+</script>
 
 
 <style scoped>
@@ -63,7 +57,7 @@ h2 {
   font-weight: bold;
 }
 
-.login {
+.register {
   font-size: 13px;
   margin-bottom: 30px
 }
@@ -127,4 +121,5 @@ p {
     position: absolute;
     left: 6px;
 }
+
 </style>

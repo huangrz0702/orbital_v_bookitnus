@@ -2,9 +2,7 @@
 <template>
   <div class="app-wrapper">
     <div class="app">
-        <navigationBar />
-      <router-view />
-      <Footer />
+      <RegisterPage/>
     </div>
   </div>
 </template>
@@ -12,17 +10,22 @@
 <script>
 //import HomePage from './views/Home.vue'
 //import LayoutPage from './layout/index.vue'
-import navigationBar from './components/Navigation.vue'
-import Footer from './components/Footer.vue'
-//import Home from './views/Home.vue'
+//import navigationBar from './components/Navigation.vue'
+//import Footer from './components/Footer.vue'
 //import SearchMainPage from './views/Search-Main/index.vue'
+//import LoginPage from './views/LoginPage.vue'
+import RegisterPage from './views/RegisterPage.vue'
+
 
 export default {
   name: 'App',
   components: {
     //LayoutPage,
-    navigationBar,
-    Footer,
+    //navigationBar,
+    //Footer,
+    //HomePage,
+    //LoginPage,
+    RegisterPage,
     
 }
 }
