@@ -3,13 +3,13 @@
     <div class="container">
       <div class="top">
         <div class="row-1">
-          <router-link class="header" :to="{ name: 'home' }">BOOKit@NUS</router-link>
+          <router-link class="header" :to="{ name: 'HomePage' }">BOOKit@NUS</router-link>
         </div>
       </div>
       <div class="middle">
         <div class="row-1">
           <ul>
-            <router-link class = "link" :to="{ name: 'home' }">Home</router-link>
+            <router-link class = "link" :to="{ name: 'HomePage' }">Home</router-link>
             <router-link class = "link" to = "#will update"> Book Facilities</router-link>
             <router-link class = "link" to = "#will update"> Forum</router-link>
           </ul>
@@ -30,7 +30,7 @@
 
 <script>
 export default {
-  name: "Footer"
+  name: "FooterVue"
 };
 </script>
 

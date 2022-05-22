@@ -3,7 +3,7 @@
     <nav>
         <div class = "container">
             <div class = "branding">
-                <router-link class="header" :to="{ name: 'home' }">BOOKit@NUS</router-link>
+                <router-link class="header" :to="{ name: 'HomePage' }">BOOKit@NUS</router-link>
             </div>
             <div class = "nav-links">
                 <ul>
