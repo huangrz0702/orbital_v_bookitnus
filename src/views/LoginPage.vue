@@ -12,6 +12,7 @@
             <input
             type="email"
             placeholder="Email"
+            v-model="login_form.email"
             required
           />
           <svg-icon class="icon" iconClass="email"></svg-icon>
@@ -21,12 +22,13 @@
             <input
             type="password"
             placeholder="Password"
+            v-model="login_form.password"
             required
           />
           <svg-icon class="icon" iconClass="lock"></svg-icon>
           </div>
 
-          <input class="btn" type="submit" value="Log in" />
+          <button @click="login">Login</button>
         </form>
       </section>
     </div>
@@ -34,8 +36,45 @@
 </template>
 
 <script>
+
+import { ref } from "vue";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../firebase/firebaseinit.js";
+import 'firebase/compat/auth';
+
 export default {
+  setup() {
+    const login_form = ref({});
+    return {
+      login_form,
+    };
+  },
+
     name: "LoginPage",
+
+    methods: {
+    async login() {
+      try {
+        await signInWithEmailAndPassword(
+          auth,
+          this.login_form.email,
+          this.login_form.password
+        );
+      } catch (error) {
+        switch (error.code) {
+          case "auth/user-not-found":
+            alert("User not found"); 
+            break;
+          case "auth/wrong-password":
+            alert("Wrong password");
+            break;
+          default:
+            alert("Something went wrong");
+        }
+        return;
+      }
+    },
+  },
 };
 
 </script>
@@ -108,7 +147,7 @@ p {
   font-size:15px      
 }
 
-.btn {
+button {
   width:30%;
   padding:10px;
   border: 0ch;

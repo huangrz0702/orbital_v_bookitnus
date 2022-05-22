@@ -6,14 +6,17 @@ import HomePage from "../views/Home.vue";
 const routes = [
     {
       path: "/",
+      name:"HomePage",
       component: HomePage,
     },
     {
       path: "/RegisterPage",
+      name:"RegisterPage",
       component: () => import("../views/RegisterPage.vue"),
     },
     {
       path: "/LoginPage",
+      name:"LoginPage",
       component: () => import("../views/LoginPage.vue"),
     },
 ];

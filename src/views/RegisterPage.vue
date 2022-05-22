@@ -50,6 +50,8 @@
           </form>
 
       </section>
+      <div class = "background-login"></div>
+
   </main>
 </template>
 
@@ -74,7 +76,9 @@ export default {
     methods: {
         async register() {
             try {
-                await createUserWithEmailAndPassword(auth, this.register_form.email, this.register_form.password)
+                await createUserWithEmailAndPassword(auth, 
+                this.register_form.email, 
+                this.register_form.password)
                 sendEmailVerification(auth.currentUser)
                 .then(() => {
                   alert("Email verification sent!")
@@ -191,4 +195,14 @@ button {
     position: absolute;
     left: 6px;
 }
+
+.background-login {
+    display: none;
+    flex: 2;
+    background-size: cover;
+    background-image: url("../assets/image/NUS.jpeg");
+    width: 100%;
+    height: 100%;
+  }
+
 </style>

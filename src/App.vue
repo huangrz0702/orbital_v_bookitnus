@@ -2,7 +2,7 @@
 <template>
   <div class="app-wrapper">
     <div class="app">
-      <RegisterPage/>
+      <loginPage/>
     </div>
   </div>
 </template>
@@ -13,8 +13,8 @@
 //import navigationBar from './components/Navigation.vue'
 //import Footer from './components/Footer.vue'
 //import SearchMainPage from './views/Search-Main/index.vue'
-//import LoginPage from './views/LoginPage.vue'
-import RegisterPage from './views/RegisterPage.vue'
+import LoginPage from './views/LoginPage.vue'
+//import RegisterPage from './views/RegisterPage.vue'
 
 
 export default {
@@ -24,8 +24,8 @@ export default {
     //navigationBar,
     //Footer,
     //HomePage,
-    //LoginPage,
-    RegisterPage,
+    LoginPage,
+    //RegisterPage,
     
 }
 }
