@@ -15,7 +15,7 @@
             v-model="login_form.email"
             required
           />
-          <svg-icon class="icon" iconClass="email"></svg-icon>
+          <svg-icon class="icon" iconClass="envelope-regular"></svg-icon>
           </div>
           
           <div class = "input">
@@ -25,7 +25,7 @@
             v-model="login_form.password"
             required
           />
-          <svg-icon class="icon" iconClass="lock"></svg-icon>
+          <svg-icon class="icon" iconClass="lock-alt-solid"></svg-icon>
           </div>
 
           <input class="btn" type="submit" value="Log in" />
@@ -158,9 +158,9 @@ p {
 }
 
 .icon {
-    width: 16px;
-    position: absolute;
-    left: 6px;
+  width: 16px;
+  position: absolute;
+  left: 6px;
 }
 
 </style>

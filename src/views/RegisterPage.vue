@@ -16,7 +16,7 @@
             v-model="register_form.email"
             required
           />
-          <svg-icon class="icon" iconClass="email"></svg-icon>
+          <svg-icon class="icon" iconClass="envelope-regular"></svg-icon>
           </div>
           
           <div class = "input">
@@ -26,7 +26,7 @@
             v-model="register_form.password"
             required
           />
-          <svg-icon class="icon" iconClass="lock"></svg-icon>
+          <svg-icon class="icon" iconClass="lock-alt-solid"></svg-icon>
           </div>
 
           <div class = "input">
@@ -120,11 +120,11 @@ export default {
 
 .Container{
   padding:10vh;
-  height: 60%;
+  height: 60%; 
   display: flex;
-  background-color: #f2f2f2;
   background-image: url("../assets/image/NUS.jpeg");
-  background-size: 1500px 800px;
+  background-color: white;
+  background-size: 100% 100%;
 }
 
 h2 {
@@ -136,8 +136,7 @@ h2 {
 
 .login {
   font-size: 13px;
-  margin-bottom: 30px;
-  margin-left: 26%
+  margin-bottom: 30px
 }
 
 .form {
@@ -148,12 +147,12 @@ h2 {
   justify-content: center;
   text-align: center;
   height: 85vh;
-  width:100%;
+  width:50%;
   background: rgba(255, 255, 255, 0.8);
   border-radius: 30px;
 }
 
-.form .login{
+.form .register{
     width:40vw;
     display: flex;
     flex-direction: column;
@@ -163,9 +162,6 @@ h2 {
 
 }
 
-p {
-  font-size: 20;
-}
 
 .input {
   position: relative;
@@ -174,7 +170,7 @@ p {
   align-items: center;
   text-align: center;
   margin-bottom: 5vh;
-  width: 50%
+  width: 50%;
 }
 
 .input input {
@@ -183,7 +179,9 @@ p {
   padding: 4px 4px 4px 30px;
   height: 50px;
   border-radius: 10px;
-  font-size:15px      
+  font-size:15px;
+  background-color: -internal-light-dark(rgb(232, 240, 254), rgba(70, 90, 126, 0.4)) !important;
+color: -internal-light-dark(black, white) !important;
 }
 
 .btn {
@@ -195,11 +193,19 @@ p {
 }
 
 .icon {
-    width: 16px;
-    position: absolute;
-    left: 6px;
+  width: 16px;
+  position: absolute;
+  left: 6px;
 }
 
+img {
+  height:70vh;
+  width:auto;
+  padding:0;
+  margin:0;
+  display: block;
+  float: right;
+}
 
 
 </style>
