@@ -2,7 +2,7 @@
   <main class="Container">
     <div>
       <section class="form">
-        <form class="login" >
+        <form class="login" @submit.prevent="login">
           <p class="register">
         Don't have an account?
         <router-link class="router-link" to="/RegisterPage">Register</router-link>
@@ -50,8 +50,6 @@ export default {
     };
   },
 
-    name: "LoginPage",
-
     methods: {
     async login() {
       try {
@@ -73,6 +71,8 @@ export default {
         }
         return;
       }
+
+      this.$router.push({ name: "HomePage" });
     },
   },
 };
@@ -87,6 +87,8 @@ export default {
   height: 60%;
   display: flex;
   background-color: #f2f2f2;
+  background-image: url("../assets/image/NUS.jpeg");
+  background-size: 1500px 800px;
 }
 
 h2 {
