@@ -28,7 +28,7 @@
           <svg-icon class="icon" iconClass="lock"></svg-icon>
           </div>
 
-          <button @click="login">Login</button>
+          <input class="btn" type="submit" value="Log in" />
         </form>
       </section>
     </div>
@@ -86,7 +86,7 @@ export default {
   padding:10vh;
   height: 60%;
   display: flex;
-  background-color: white;
+  background-color: #f2f2f2;
 }
 
 h2 {
@@ -147,7 +147,7 @@ p {
   font-size:15px      
 }
 
-button {
+.btn {
   width:30%;
   padding:10px;
   border: 0ch;

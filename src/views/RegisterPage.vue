@@ -45,7 +45,10 @@
                 <svg-icon class="icon" iconClass="house"></svg-icon>
             </div>
 
-            <button @click="register">Register</button>
+            <input
+                class="btn"
+                type="submit"
+                value="Register" />
             
           </form>
 
@@ -120,7 +123,7 @@ export default {
   padding:10vh;
   height: 60%;
   display: flex;
-  background-color: white;
+  background-color: #f2f2f2;
 }
 
 h2 {
@@ -182,7 +185,7 @@ p {
   font-size:15px      
 }
 
-button {
+.btn {
   width:30%;
   padding:10px;
   border: 0ch;
