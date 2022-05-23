@@ -2,7 +2,7 @@
   <main class="Container">
       <section class="form">
 
-          <form class="register" >
+          <form class="register" @submit.prevent="register">
               <p class="login">
         Already have an account?
         <router-link class="router-link" to="/LoginPage">Login</router-link>
@@ -53,7 +53,6 @@
           </form>
 
       </section>
-      <div class = "background-login"></div>
 
   </main>
 </template>
@@ -66,8 +65,6 @@ import { auth, db } from '../firebase/firebaseinit'
 import { doc, setDoc } from "firebase/firestore"
 
 export default {
-
-    name: "RegisterPage",
 
     setup() {
         const register_form = ref({});
@@ -109,6 +106,8 @@ export default {
             await setDoc(doc(db, "users", auth.currentUser.uid), {
                 name: this.register_form.name
             })
+
+            this.$router.push({ name: "HomePage"})
         }
     }
 
@@ -124,6 +123,8 @@ export default {
   height: 60%;
   display: flex;
   background-color: #f2f2f2;
+  background-image: url("../assets/image/NUS.jpeg");
+  background-size: 1500px 800px;
 }
 
 h2 {
@@ -199,13 +200,6 @@ p {
     left: 6px;
 }
 
-.background-login {
-    display: none;
-    flex: 2;
-    background-size: cover;
-    background-image: url("../assets/image/NUS.jpeg");
-    width: 100%;
-    height: 100%;
-  }
+
 
 </style>
