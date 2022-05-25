@@ -77,6 +77,7 @@ export default {
       }
 
       this.$router.push({ name: "HomePage" });
+      localStorage.setItem("currentuser", JSON.stringify(this.login_form.email));
     },
   },
 };

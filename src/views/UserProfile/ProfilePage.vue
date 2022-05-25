@@ -1,20 +1,41 @@
 <template>
     <div class="container-profile">
+        <h1>Greetings, User {{ name }} !</h1>
         <h2>My account</h2>
         <p>View and edit your personal info below.</p>
+
+        <form class= "signout"  @submit.prevent="signout">
+        <input class="btn" type="submit" value="Sign Out" />
+        </form>
+        
         <hr/>
 
         <h2>Display Name</h2>
         <p>Change your display name here.</p>
+        <div class = "input">
+        <input
+            type="displayname"
+            placeholder="Please Enter Your New Display name"
+            v-model="profile.name"
+            required
+          />
         <hr/>
 
         <h2>Place of Residence</h2>
         <p>Change your place of residence here.</p>
+        <input
+            type="residence"
+            placeholder="Please Enter Your New Place of Residence"
+            v-model="profile.residence"
+            required
+          />
+        </div>
         <hr/>
 
-        <form class="login" @submit.prevent="changepassword">
+        <form class="changepassword" @submit.prevent="changepassword">
         <h2>Change your password</h2>
         <p>Send an email to change your password. </p>
+
         <div class = "input">
         <input
             type="email"
@@ -23,16 +44,16 @@
             required
           />
         </div>
-        <input class="btn" type="submit" value="Change Password" />
-        
+        <input class="btn" id="changepassword" type="submit" value="Change Password" />
         </form>
+          
     </div>
 
 </template>
 
 <script>
 import { ref } from "vue";
-import { sendPasswordResetEmail } from "firebase/auth";
+import { sendPasswordResetEmail} from "firebase/auth";
 import { auth } from "../../firebase/firebaseinit.js";
 import 'firebase/compat/auth';
 
@@ -43,6 +64,13 @@ export default{
             profile,
         };
     },
+
+    props: {
+        name: {
+            type: String, 
+            default: localStorage.getItem('currentuser')
+        },
+    },
     methods: {
         async changepassword() {
             try{
@@ -52,6 +80,20 @@ export default{
                 });
             } catch(error) {
                 switch (error.code) {
+                    default:
+                        alert("Something went wrong");
+                }
+                return;
+            }
+        },
+        async signout() {
+            try {
+                await localStorage.clear()
+                alert("You have signed out!")
+                this.$router.push({ name: "LoginPage"})
+            } catch(error) {
+                    console.log(error)
+                    switch (error.code) {
                     default:
                         alert("Something went wrong");
                 }
@@ -86,8 +128,6 @@ hr {
     size: 1;
 }
 
-
-
 .input input {
   width: 30%;
   border: none;
@@ -97,11 +137,10 @@ hr {
   font-size:13px;
   display: block;
   position: relative;
-  top: 15px;
-  left: 70px;   
+  left: 80px;   
 }
 
-.btn {
+.btn  {
     width: 250px;
     height: 30px;
     border: none;
@@ -115,7 +154,6 @@ hr {
     border: 0ch;
     border-radius: 30px;
     position: relative;
-    top: 30px;
     left: 70px;
 }
 </style>
