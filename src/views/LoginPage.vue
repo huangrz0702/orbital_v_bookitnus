@@ -6,7 +6,11 @@
           <p class="register">
         Don't have an account?
         <router-link class="router-link" to="/RegisterPage">Register</router-link>
-      </p>
+        </p>
+          <p class="register">
+        Are you an admin?
+        <router-link class="router-link" to="#adminpage">Go to admin login</router-link>
+        </p>
           <h2>Login</h2>
           <div class = "input">
             <input
