@@ -15,108 +15,120 @@
     </div>
 </div>
 
-<h1>Click to view facilities in each place!</h1>
-<div class = "row">
+<div class = "gallery-wrapper">
 
-  <div class="col">
-  <a target="_blank" href="https://uci.nus.edu.sg/suu/wp-content/uploads/sites/5/2019/11/Facilities-at-Stephen-Riady-Centre.pdf">
-    <img src="@/assets/image/utown.jpeg" alt="utown" width="600" height="400">
-  </a>
-  <div class="desc">Utown</div>
-</div>
-
-<div class="col">
-  <a target="_blank" href="https://uci.nus.edu.sg/suu/facilities/about-suu-sports-facilities/university-sports-centre/">
-    <img src="@/assets/image/USC.jpeg" alt="USC" width="300" height="200">
-  </a>
-  <div class="desc">University Sports Center</div>
-</div>
-
-<div class="col">
-  <a target="_blank" href="https://tembusu.nus.edu.sg/college-life/student-spaces">
-    <img src="@/assets/image/Tembusu.jpeg" alt="Tembusu" width="300" height="200">
-  </a>
-  <div class="desc">Tembusu College</div>
-</div>
-
-</div>
+  <h1>Photo Gallery</h1>
+  <p>click on the picture to view the facilities available</p>
 
 
-<div class="gallery">
-  <a target="_blank" href="https://capt.nus.edu.sg/the-capt-experience/living-capt/living-capt-details/facilities-rooms">
-    <img src="@/assets/image/CAPT.jpeg" alt="CAPT" width="300" height="200">
-  </a>
-  <div class="desc">CAPT</div>
-</div>
+  <div class = "row">
+    <div class = "col">
 
-<div class="gallery">
-  <a target="_blank" href="https://rc4.nus.edu.sg/rc4life/cognitio/">
-    <img src="@/assets/image/RC4.jpeg" alt="RC4" width="300" height="200">
-  </a>
-  <div class="desc">RC4</div>
-</div>
+    <div class="gallery">
+      <a target="_blank" href="https://uci.nus.edu.sg/suu/wp-content/uploads/sites/5/2019/11/Facilities-at-Stephen-Riady-Centre.pdf">
+        <img src="@/assets/image/utown.jpeg" alt="utown" width="600" height="400"></a>
+      <div class="desc">Utown</div>
+    </div>
 
-<div class="gallery">
-  <a target="_blank" href="https://www.usp.nus.edu.sg/life-at-usp/facilitites-and-other-resources/">
-    <img src="@/assets/image/USP.jpeg" alt="USP" width="300" height="200">
-  </a>
-  <div class="desc">USP</div>
-</div>
+    <div class="gallery">
+      <a target="_blank" href="https://uci.nus.edu.sg/suu/facilities/about-suu-sports-facilities/university-sports-centre/">
+        <img src="@/assets/image/USC.jpeg" alt="USC" width="300" height="200">
+      </a>
+      <div class="desc">University Sports Center</div>
+    </div>
 
-<div class="gallery">
-  <a target="_blank" href="https://nus.edu.sg/osa/raffleshall/facilities/amenities">
-    <img src="@/assets/image/RH.jpeg" alt="RH" width="300" height="200">
-  </a>
-  <div class="desc">Raffles Hall</div>
-</div>
+    <div class="gallery">
+      <a target="_blank" href="https://tembusu.nus.edu.sg/college-life/student-spaces">
+        <img src="@/assets/image/Tembusu.jpeg" alt="Tembusu" width="300" height="200">
+      </a>
+      <div class="desc">Tembusu College</div>
+    </div>
 
-<div class="gallery">
-  <a target="_blank" href="https://nus.edu.sg/osa/temasekhall/facilities/amenities">
-    <img src="@/assets/image/TH.jpeg" alt="TH" width="300" height="200">
-  </a>
-  <div class="desc">Temasek Hall</div>
-</div>
+    <div class="gallery">
+      <a target="_blank" href="https://nus.edu.sg/osa/pioneerhouse/facilities">
+        <img src="@/assets/image/PGP.jpeg" alt="PGP" width="300" height="200">
+      </a>
+      <div class="desc">Prince Georges Park</div>
+    </div>
+    
+    <div class="gallery">
+      <a target="_blank" href="https://nus.edu.sg/osa/keviihall/facilities/guest-accomodation">
+        <img src="@/assets/image/KE.png" alt="KE" width="300" height="200">
+      </a>
+      <div class="desc">KE VII Hall</div>
+    </div>
 
-<div class="gallery">
-  <a target="_blank" href="https://nus.edu.sg/osa/eusoffhall/our-facilities/common-facilities">
-    <img src="@/assets/image/EH.jpeg" alt="EH" width="300" height="200">
-  </a>
-  <div class="desc">Eusoff Hall</div>
-</div>
+    </div>
 
-<div class="gallery">
-  <a target="_blank" href="https://nus.edu.sg/osa/sheareshall/living/facilities">
-    <img src="@/assets/image/SH.jpeg" alt="SH" width="300" height="200">
-  </a>
-  <div class="desc">Sheares Hall</div>
-</div>
+    <div class = "col">
+      <div class="gallery">
+        <a target="_blank" href="https://capt.nus.edu.sg/the-capt-experience/living-capt/living-capt-details/facilities-rooms">
+          <img src="@/assets/image/CAPT.jpeg" alt="CAPT" width="300" height="200">
+        </a>
+        <div class="desc">CAPT</div>
+      </div>
 
-<div class="gallery">
-  <a target="_blank" href="https://nus.edu.sg/osa/kentridgehall/facilities/amenities">
-    <img src="@/assets/image/KR.jpeg" alt="KR" width="300" height="200">
-  </a>
-  <div class="desc">Kent Ridge Hall</div>
-</div>
+      <div class="gallery">
+        <a target="_blank" href="https://rc4.nus.edu.sg/rc4life/cognitio/">
+          <img src="@/assets/image/RC4.jpeg" alt="RC4" width="300" height="200">
+        </a>
+        <div class="desc">RC4</div>
+      </div>
 
-<div class="gallery">
-  <a target="_blank" href="https://nus.edu.sg/osa/keviihall/facilities/guest-accomodation">
-    <img src="@/assets/image/KE.png" alt="KE" width="300" height="200">
-  </a>
-  <div class="desc">KE VII Hall</div>
-</div>
+      <div class="gallery">
+        <a target="_blank" href="https://www.usp.nus.edu.sg/life-at-usp/facilitites-and-other-resources/">
+          <img src="@/assets/image/USP.jpeg" alt="USP" width="300" height="200">
+        </a>
+        <div class="desc">USP</div>
+      </div>
 
-<div class="gallery">
-  <a target="_blank" href="https://nus.edu.sg/osa/pioneerhouse/facilities">
-    <img src="@/assets/image/PGP.jpeg" alt="PGP" width="300" height="200">
-  </a>
-  <div class="desc">Prince Georges Park</div>
-</div>
+      <div class="gallery">
+        <a target="_blank" href="https://rvrc.nus.edu.sg/residential/facilities/">
+          <img src="@/assets/image/rvrc.jpeg" alt="RVRC" width="300" height="200">
+        </a>
+        <div class="desc">RVRC</div>
+      </div>
+    </div>
 
-<div class="gallery">
-  <a target="_blank" href="https://rvrc.nus.edu.sg/residential/facilities/">
-    <img src="@/assets/image/rvrc.jpeg" alt="RVRC" width="300" height="200">
-  </a>
-  <div class="desc">RVRC</div>
+    <div class = "col">
+      <div class="gallery">
+        <a target="_blank" href="https://nus.edu.sg/osa/raffleshall/facilities/amenities">
+          <img src="@/assets/image/RH.jpeg" alt="RH" width="300" height="200">
+        </a>
+        <div class="desc">Raffles Hall</div>
+      </div>
+
+      <div class="gallery">
+        <a target="_blank" href="https://nus.edu.sg/osa/temasekhall/facilities/amenities">
+          <img src="@/assets/image/TH.jpeg" alt="TH" width="300" height="200">
+        </a>
+        <div class="desc">Temasek Hall</div>
+      </div>
+
+      <div class="gallery">
+        <a target="_blank" href="https://nus.edu.sg/osa/eusoffhall/our-facilities/common-facilities">
+          <img src="@/assets/image/EH.jpeg" alt="EH" width="300" height="200">
+        </a>
+        <div class="desc">Eusoff Hall</div>
+      </div>
+      <div class="gallery">
+        <a target="_blank" href="https://nus.edu.sg/osa/sheareshall/living/facilities">
+          <img src="@/assets/image/SH.jpeg" alt="SH" width="300" height="200">
+        </a>
+        <div class="desc">Sheares Hall</div>
+      </div>
+
+      <div class="gallery">
+        <a target="_blank" href="https://nus.edu.sg/osa/kentridgehall/facilities/amenities">
+          <img src="@/assets/image/KR.jpeg" alt="KR" width="300" height="200">
+        </a>
+        <div class="desc">Kent Ridge Hall</div>
+      </div>
+
+    </div>
+
+  </div>
+
 </div>
 
 </template>
@@ -200,25 +212,54 @@
 
     }
 
-div.gallery {
-  margin: 5px;
-  border: 1px solid #ccc;
-  float: left;
-  width: 400px;
-}
+  .gallery-wrapper {
+    background-color: #f1f3f4;
 
-div.gallery:hover {
-  border: 1px solid #777;
-}
+    h1,p {
+      text-align: center;
+      position:relative;
+      font-family: "Times New Roman", Times, serif;
+      color:#271e05;
+    }
 
-div.gallery img {
-  width: 100%;
-  height: auto;
-}
+    .row::after {
+      content: "";
+      clear: both;
+      display: table;
+    }
 
-div.desc {
-  padding: 15px;
-  text-align: center;
-}
+  .row {
+
+    .col {
+    float: left;
+    width: 33.33%;
+    padding: 5px;
+
+      .gallery {
+      margin: 5px;
+      border: 1px solid #ccc;
+      float: left;
+      width: 400px;
+      }
+
+      .gallery:hover {
+        border: 1px solid #777;
+      }
+
+      .gallery img {
+        width: 100%;
+        height: auto;
+      }
+
+      .desc {
+        padding: 15px;
+        text-align: center;
+      }
+    }
+
+  }
+  }
+
+
 
 </style>
