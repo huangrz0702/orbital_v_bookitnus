@@ -84,11 +84,11 @@ export default {
 
 .Container{
   padding:10vh;
-  height: 60%;
+  height: 60%; 
   display: flex;
-  background-color: #f2f2f2;
   background-image: url("../assets/image/NUS.jpeg");
-  background-size: 1500px 800px;
+  background-color: white;
+  background-size: 100% 100%;
 }
 
 h2 {
@@ -154,6 +154,7 @@ p {
   padding:10px;
   border: 0ch;
   border-radius: 30px;
+  cursor: pointer;
   
 }
 

@@ -189,6 +189,7 @@ color: -internal-light-dark(black, white) !important;
   padding:10px;
   border: 0ch;
   border-radius: 30px;
+  cursor: pointer;
   
 }
 
