@@ -1,149 +1,157 @@
 <template>
   <footer>
     <div class="container">
-      <div class="top">
-        <div class="row-1">
-          <router-link class="header" :to="{ name: 'HomePage' }">BOOKit@NUS</router-link>
-        </div>
+      <div class="branding">
+        <router-link class="header" :to="{ name: 'HomePage' }"
+          >BOOKit@NUS</router-link
+        >
       </div>
-      <div class="middle">
-        <div class="row-1">
+      <div class="nav-links">
+        <div class="item">
+          <h3>About</h3>
           <ul>
-            <router-link class = "link" :to="{ name: 'HomePage' }">Home</router-link>
-            <router-link class = "link" to = "#will update"> Book Facilities</router-link>
-            <router-link class = "link" to = "#will update"> Forum</router-link>
+            <router-link class="link" to="/AboutPage">About Us</router-link><br>
+            <router-link class="link" to="/ContactPage">Contact Us</router-link><br>
+            <router-link class="link" to="/">Join US</router-link><br>
           </ul>
         </div>
-        <div class = "row-2">
-           <ul> 
-            <router-link class = "link" to = "/ProfilePage"> User Profile</router-link>
-            <router-link class = "link" to = "/LoginPage">   Login / Register</router-link>
-           </ul>
+        <div class="item">
+          <h3>Quick Links</h3>
+          <ul>
+            <router-link class="link" to="/RegisterPage">Register / Login</router-link><br>
+            <router-link class="link" to="/BookingPage">Booking</router-link><br>
+            <router-link class="link" to="/ForumPage">Forum</router-link><br>
+          </ul>
         </div>
       </div>
-      <div class="bottom">
-        <p>Copyright 2022 All Rights Reserved</p>
+      <div class="col item social">
+        <a href="#"><i class="icon ion-social-facebook"></i></a
+        ><a href="#"><i class="icon ion-social-twitter"></i></a
+        ><a href="#"><i class="icon ion-social-snapchat"></i></a
+        ><a href="#"><i class="icon ion-social-instagram"></i></a>
       </div>
     </div>
+    <p class="copyright">BOOKit@NUS © 2022</p>
   </footer>
 </template>
 
 <script>
 export default {
-  name: "FooterVue"
+  name: "FooterVue",
 };
 </script>
 
 <style lang="scss" scoped>
+
 footer {
   margin-top: auto;
-  padding: 100px 25px;
-  background-color: #135c97ae;
+  padding: 25px 25px;
+  background: #ff5f6d;
+  background: -webkit-linear-gradient(to right, #ff5f6d, #ffc371);
+  background: linear-gradient(to right, #ff5f6d, #ffc371);
 }
-.container {
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
-  @media (min-width: 800px) {
-    flex-direction: row;
-    gap: 0px;
-  }
 
-  > div {
+.branding {
     display: flex;
-    flex: 1;
-  }
-
-  .top {
-    gap: 32px;
-    color: #fff;
-    display: flex;
-    flex-direction: column;
     align-items: center;
-    @media (min-width: 800px) {
-      flex-direction: row;
-      align-items: initial;
-      gap: 0;
-    }
-
     .header {
       font-size: 24px;
-      color: #fff;
+      color: #000;
       text-decoration: none;
       font-weight: 600;
     }
-
-    .row-1{
-      gap: 32px;
-      display: flex;
-      flex: 1;
-      @media (min-width: 800px) {
-        gap: 0;
-      }
-    }
-
-    .row-1 {
-      flex-direction: column;
-
-      h2 {
-        text-align: center;
-        @media (min-width: 800px) {
-          text-align: initial;
-        }
-      }
-      ul {
-        margin-top: auto;
-      }
+    .logo {
+       max-width: 20px;
+       max-height: 10px;
     }
   }
 
-  .middle {
-    gap: 32px;
-    color: #fff;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    @media (min-width: 800px) {
-      flex-direction: column;
-      align-items: initial;
-      gap: 10px;
-    }
-    .row-1,
-    .row-2 {
-      ul {
-        height: 100%;
-        justify-content: center;
-        flex-direction: column;
-        flex-wrap: wrap;
-        @media (min-width: 800px) {
-          flex-direction: row;
-        }
-        .link {
-          font-size: 20px;
-          font-weight: 500;
-          color: #fff;
-          text-decoration: none;
-          gap: 20px;
-          
-        }
-      }
-    }
+h3 {
+  margin-top:0;
+  margin-bottom:12px;
+  font-weight:bold;
+  font-size:16px;
+}
 
-  }
+ul {
+  padding:0;
+  list-style:none;
+  line-height:1.6;
+  font-size:14px;
+  margin-bottom:0;
+}
 
-  .bottom {
-    gap: 32px;
-    color: #fff;
-    align-items: center;
-    flex-direction: column;
-    @media (min-width: 800px) {
-      align-items: flex-end;
-      gap: 0;
-    }
-  }
+ul a {
+  color:inherit;
+  text-decoration:none;
+  opacity:0.6;
+}
 
-  p {
-    margin-top: auto;
+ul a:hover {
+  opacity:0.8;
+}
+
+@media (max-width:767px) {
+  .item:not(.social) {
+    text-align:center;
+    padding-bottom:20px;
   }
+}
+
+.item.text {
+  margin-bottom:36px;
+}
+
+@media (max-width:767px) {
+  .item.text {
+    margin-bottom:0;
+  }
+}
+
+.item.text p {
+  opacity:0.6;
+  margin-bottom:0;
+}
+  
+.nav-links {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 20px;
+}
+
+.item.social {
+  text-align: center;
+}
+
+@media (max-width: 991px) {
+  .item.social {
+    text-align: center;
+    margin-top: 20px;
+  }
+}
+
+.item.social > a {
+  font-size: 20px;
+  width: 36px;
+  height: 36px;
+  line-height: 36px;
+  display: inline-block;
+  text-align: center;
+  border-radius: 50%;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.4);
+  margin: 0 8px;
+  color: #fff;
+  opacity: 0.75;
+}
+
+.item.social > a:hover {
+  opacity: 0.9;
+}
+.copyright {
+  text-align: center;
+  padding-top: 24px;
+  opacity: 0.8;
+  font-size: 13px;
+  margin-bottom: 0;
 }
 </style>

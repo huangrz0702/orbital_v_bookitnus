@@ -38,6 +38,18 @@ const routes = [
       name:"ProfilePage",
       component: () => import("../views/UserProfile/ProfilePage.vue"),
     },
+
+    {
+      path: "/AboutPage",
+      name:"AboutPage",
+      component: () => import("../views/About.vue"),
+    },
+
+    {
+      path: "/ContactPage",
+      name:"ContactPage",
+      component: () => import("../views/Contact.vue"),
+    },
 ];
 
 const router = createRouter({
