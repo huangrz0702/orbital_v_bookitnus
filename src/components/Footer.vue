@@ -1,5 +1,8 @@
 <template>
   <footer>
+    <link href='https://css.gg/twitter.css' rel='stylesheet'>
+    <link href='https://css.gg/facebook.css' rel='stylesheet'>
+    <link href='https://css.gg/instagram.css' rel='stylesheet'>
     <div class="container">
       <div class="branding">
         <router-link class="header" :to="{ name: 'HomePage' }"
@@ -25,10 +28,9 @@
         </div>
       </div>
       <div class="col item social">
-        <a href="#"><i class="icon ion-social-facebook"></i></a
-        ><a href="#"><i class="icon ion-social-twitter"></i></a
-        ><a href="#"><i class="icon ion-social-snapchat"></i></a
-        ><a href="#"><i class="icon ion-social-instagram"></i></a>
+        <a href="https://www.facebook.com/"><i class="gg-facebook"></i></a
+        ><a href="https://twitter.com/"><i class="gg-twitter"></i></a
+        ><a href="https://www.instagram.com/?hl=en"><i class="gg-instagram"></i></a>
       </div>
     </div>
     <p class="copyright">BOOKit@NUS © 2022</p>
@@ -72,7 +74,6 @@ h3 {
   font-weight:bold;
   font-size:16px;
 }
-
 ul {
   padding:0;
   list-style:none;
@@ -94,7 +95,7 @@ ul a:hover {
 @media (max-width:767px) {
   .item:not(.social) {
     text-align:center;
-    padding-bottom:20px;
+    padding-bottom:10px;
   }
 }
 
@@ -126,7 +127,7 @@ ul a:hover {
 @media (max-width: 991px) {
   .item.social {
     text-align: center;
-    margin-top: 20px;
+    margin-top: 10px;
   }
 }
 
@@ -147,6 +148,18 @@ ul a:hover {
 .item.social > a:hover {
   opacity: 0.9;
 }
+
+i {
+    box-sizing: border-box;
+    position: relative;
+    display: block;
+    transform: scale(var(--ggs,1));
+    width: 20px;
+    height: 20px;
+    margin: 8px 8px 8px 8px;
+}
+
+
 .copyright {
   text-align: center;
   padding-top: 24px;
