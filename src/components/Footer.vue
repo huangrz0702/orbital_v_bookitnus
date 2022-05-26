@@ -46,9 +46,8 @@ export default {
 footer {
   margin-top: auto;
   padding: 25px 25px;
-  background: #ff5f6d;
-  background: -webkit-linear-gradient(to right, #ff5f6d, #ffc371);
-  background: linear-gradient(to right, #ff5f6d, #ffc371);
+  background: rgb(145,181,240);
+  background: linear-gradient(0deg, rgba(145,181,240,1) 6%, rgba(250,232,194,1) 100%);
 }
 
 .branding {

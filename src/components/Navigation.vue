@@ -29,12 +29,11 @@ export default {
 
 <style lang="scss" scoped>
 header {
-  background: #ff5f6d;
-  background: -webkit-linear-gradient(to right, #ff5f6d, #ffc371);
-  background: linear-gradient(to right, #ff5f6d, #ffc371);
-  padding: 0 25px;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  z-index: 99;
+    background: rgb(235,170,155);
+    background: linear-gradient(180deg, rgba(235,170,155,1) 0%, rgba(255,207,134,1) 51%, rgba(241,235,190,1) 100%);
+    padding: 0 25px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    z-index: 99;
 }
 
 .container {
