@@ -14,7 +14,6 @@
           <h3>About</h3>
           <ul>
             <router-link class="link" to="/AboutPage">About Us</router-link><br>
-            <router-link class="link" to="/ContactPage">Contact Us</router-link><br>
             <router-link class="link" to="/">Join US</router-link><br>
           </ul>
         </div>
@@ -24,6 +23,7 @@
             <router-link class="link" to="/RegisterPage">Register / Login</router-link><br>
             <router-link class="link" to="/BookingPage">Booking</router-link><br>
             <router-link class="link" to="/ForumPage">Forum</router-link><br>
+            <router-link class="link" to="/ContactPage">Contact Admin</router-link><br>
           </ul>
         </div>
       </div>
@@ -72,6 +72,10 @@ h3 {
   margin-bottom:12px;
   font-weight:bold;
   font-size:16px;
+  display: inline-flex;
+  position: relative;
+
+  top: 10px;
 }
 ul {
   padding:0;
@@ -119,13 +123,17 @@ ul a:hover {
   grid-gap: 20px;
 }
 
-.item.social {
-  text-align: center;
+.item.social {      
+  display: inline-flex;
+  position: relative;
+  left: -10px;
+  top: -30px;
+
 }
 
 @media (max-width: 991px) {
   .item.social {
-    text-align: center;
+    text-align: left;
     margin-top: 10px;
   }
 }
@@ -160,7 +168,7 @@ i {
 
 
 .copyright {
-  text-align: center;
+  text-align: right;
   padding-top: 24px;
   opacity: 0.8;
   font-size: 13px;
