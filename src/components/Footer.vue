@@ -16,8 +16,8 @@
         </div>
         <div class = "row-2">
            <ul> 
-            <router-link class = "link" to = "#will update"> User Profile</router-link>
-            <router-link class = "link" to = "#will update">   Login / Register</router-link>
+            <router-link class = "link" to = "/ProfilePage"> User Profile</router-link>
+            <router-link class = "link" to = "/LoginPage">   Login / Register</router-link>
            </ul>
         </div>
       </div>

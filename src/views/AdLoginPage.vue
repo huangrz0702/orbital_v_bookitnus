@@ -4,12 +4,8 @@
       <section class="form">
         <form class="login" @submit.prevent="login">
           <p class="register">
-        Don't have an account?
-        <router-link class="router-link" to="/RegisterPage">Register</router-link>
-        </p>
-          <p class="register">
-        Are you an admin?
-        <router-link class="router-link" to="/AdminLogin">Go to admin login</router-link>
+        Are you a student?
+        <router-link class="router-link" to="/LoginPage">Go to student login</router-link>
         </p>
           <h2>Login</h2>
           <div class = "input">
@@ -76,7 +72,7 @@ export default {
         return;
       }
 
-      this.$router.push({ name: "HomePage" });
+      this.$router.push({ name: "AdHomePage" });
       localStorage.setItem("currentuser", JSON.stringify(this.login_form.email));
     },
   },

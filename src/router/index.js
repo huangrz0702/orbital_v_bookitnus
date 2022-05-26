@@ -9,6 +9,13 @@ const routes = [
       name:"HomePage",
       component: HomePage,
     },
+
+    {
+      path: "/AdHomePage",
+      name: "AdHomePage",
+      component: () => import("../views/Admin-Main/AdHome.vue"),
+    },
+    
     {
       path: "/RegisterPage",
       name:"RegisterPage",
@@ -19,6 +26,13 @@ const routes = [
       name:"LoginPage",
       component: () => import("../views/LoginPage.vue"),
     },
+
+    {
+      path: "/AdminLogin",
+      name:"AdminLogin",
+      component: () => import("../views/AdLoginPage.vue"),
+    },
+
     {
       path: "/ProfilePage",
       name:"ProfilePage",

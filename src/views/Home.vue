@@ -7,6 +7,7 @@
       <br> You can also communicate with your 
       <br> fellow schoolmates and rate the facilities!
       <br>Login to explore full functionality!</p>
+      
       <router-link class = "link" :to="{ name: 'LoginPage' }">LOGIN / REGISTER</router-link>
     </div>
 
@@ -184,6 +185,19 @@
       &:hover {
           color: #135c97ae;
       }
+    }
+
+    .link-admin {
+      font-size: 15px;
+      display: inline-flex;
+      position: relative;
+      left:-50px;
+      margin-top: 32px;
+      padding-bottom: 4px;
+      &:hover {
+        color: #135c97ae;
+      }
+
     }
 
 
