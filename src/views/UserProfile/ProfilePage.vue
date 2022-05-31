@@ -1,131 +1,140 @@
 <template>
-    <div class="container-profile">
-        <h1>Greetings, User {{ name }} !</h1>
-        <h2>My account</h2>
-        <p>View and edit your personal info below.</p>
+  <div class="container-profile">
+    <h1>Greetings, User {{ name }} !</h1>
+    <h2>My account</h2>
+    <p>View and edit your personal info below.</p>
 
-        <form class= "signout"  @submit.prevent="signout">
-        <input class="btn" type="submit" value="Sign Out" />
-        </form>
-        
-        <hr/>
+    <form class="signout" @submit.prevent="signout">
+      <input class="btn" type="submit" value="Sign Out" />
+    </form>
+    <br />
+    <hr />
 
-        <h2>Display Name</h2>
-        <p>Change your display name here.</p>
-        <div class = "input">
+    <form class="changepassword" @submit.prevent="changepassword">
+      <h2>Change your password</h2>
+      <p>Send an email to change your password.</p>
+
+      <div class="input">
         <input
-            type="displayname"
-            placeholder="Please Enter Your New Display name"
-            v-model="profile.name"
-            required
-          />
-        <hr/>
+          type="email"
+          placeholder="Please Enter Your Email"
+          v-model="profile.email"
+          required
+        />
+      </div>
+      <input
+        class="btn"
+        id="changepassword"
+        type="submit"
+        value="Change Password"
+      />
+    </form>
+    <br>
+    <hr>
 
-        <h2>Place of Residence</h2>
-        <p>Change your place of residence here.</p>
-        <input
-            type="residence"
-            placeholder="Please Enter Your New Place of Residence"
-            v-model="profile.residence"
-            required
-          />
-        </div>
-        <hr/>
+    <h2>Display Name</h2>
+    <p>Change your display name here.</p>
+    <div class="input">
+      <input
+        type="displayname"
+        placeholder="Please Enter Your New Display name"
+        v-model="profile.name"
+        required
+      />
+      <br />
+      <hr />
 
-        <form class="changepassword" @submit.prevent="changepassword">
-        <h2>Change your password</h2>
-        <p>Send an email to change your password. </p>
-
-        <div class = "input">
-        <input
-            type="email"
-            placeholder="Please Enter Your Email"
-            v-model="profile.email"
-            required
-          />
-        </div>
-        <input class="btn" id="changepassword" type="submit" value="Change Password" />
-        </form>
-          
+      <h2>Place of Residence</h2>
+      <p>Change your place of residence here.</p>
+      <input
+        type="residence"
+        placeholder="Please Enter Your New Place of Residence"
+        v-model="profile.residence"
+        required
+      />
     </div>
+    <br />
+    <hr />
 
+  </div>
 </template>
 
 <script>
 import { ref } from "vue";
-import { sendPasswordResetEmail} from "firebase/auth";
+import { sendPasswordResetEmail } from "firebase/auth";
 import { auth } from "../../firebase/firebaseinit.js";
-import 'firebase/compat/auth';
+import "firebase/compat/auth";
 
-export default{
-    setup() {
-        const profile = ref({});
-        return {
-            profile,
-        };
-    },
+export default {
+  setup() {
+    const profile = ref({});
+    return {
+      profile,
+    };
+  },
 
-    props: {
-        name: {
-            type: String, 
-            default: localStorage.getItem('currentuser')
-        },
+  props: {
+    name: {
+      type: String,
+      default: localStorage.getItem("currentuser"),
     },
-    methods: {
-        async changepassword() {
-            try{
-                await sendPasswordResetEmail(auth, this.profile.email)
-                .then(() => {
-                  alert("Password Reset Email Sent!")
-                });
-            } catch(error) {
-                switch (error.code) {
-                    default:
-                        alert("Something went wrong");
-                }
-                return;
-            }
-        },
-        async signout() {
-            try {
-                await localStorage.clear()
-                alert("You have signed out!")
-                this.$router.push({ name: "LoginPage"})
-            } catch(error) {
-                    console.log(error)
-                    switch (error.code) {
-                    default:
-                        alert("Something went wrong");
-                }
-                return;
-            }
-        },
+  },
+  methods: {
+    async changepassword() {
+      try {
+        await sendPasswordResetEmail(auth, this.profile.email).then(() => {
+          alert("Password Reset Email Sent!");
+        });
+      } catch (error) {
+        switch (error.code) {
+          default:
+            alert("Something went wrong");
+        }
+        return;
+      }
     },
+    async signout() {
+      try {
+        await localStorage.clear();
+        alert("You have signed out!");
+        this.$router.push({ name: "LoginPage" });
+      } catch (error) {
+        console.log(error);
+        switch (error.code) {
+          default:
+            alert("Something went wrong");
+        }
+        return;
+      }
+    },
+  },
 };
 </script>
 
 <style scoped>
 .container-profile {
-    height: 75vh;
-    padding-left: 5vw;
-    padding-right:5vw;
-    padding: 1vh 10vw 1vh 10vw;
-    background-size: 100% 100%;
-    background-image: url(../../assets/image/profile.png);
+  height: 75vh;
+  padding-left: 5vw;
+  padding-right: 5vw;
+  padding: 1vh 10vw 1vh 10vw;
+  background-size: 100% 100%;
+  background-image: url(../../assets/image/profile.png);
 }
-h2{
-    font-size: 18px;
-    padding: 1vh 5vw 1vh 5vw;
-    font-weight:bold
+
+h2 {
+  font-size: 18px;
+  padding: 1vh 5vw 1vh 5vw;
+  font-weight: bold;
 }
-p{
-    font-size: 15px;
-    padding: 1vh 5vw 1vh 5vw;
+p {
+  font-size: 15px;
+  padding: 1vh 5vw 1vh 5vw;
 }
+
 hr {
-    width: 90%;
-    color: gray;
-    size: 1;
+  width: 90%;
+  color: gray;
+  size: 1;
 }
 
 .input input {
@@ -134,26 +143,26 @@ hr {
   padding: 4px 4px 4px 30px;
   height: 30px;
   border-radius: 10px;
-  font-size:13px;
+  font-size: 13px;
   display: block;
   position: relative;
-  left: 80px;   
+  left: 73px;
 }
 
-.btn  {
-    width: 250px;
-    height: 30px;
-    border: none;
-    background: rgba(237, 209, 96, 0.669);
-    color: black;
-    font-size: 13px;
-    text-align: center;
-    cursor: pointer;
-    display: block;
-    padding:10px,10px;
-    border: 0ch;
-    border-radius: 30px;
-    position: relative;
-    left: 70px;
+.btn {
+  width: 250px;
+  height: 30px;
+  border: none;
+  background: rgba(237, 209, 96, 0.669);
+  color: black;
+  font-size: 13px;
+  text-align: center;
+  cursor: pointer;
+  display: block;
+  padding: 10px, 10px;
+  border: 0ch;
+  border-radius: 30px;
+  position: relative;
+  left: 70px;
 }
 </style>

@@ -160,7 +160,6 @@ p {
   border: 0ch;
   border-radius: 30px;
   cursor: pointer;
-  
 }
 
 .icon {

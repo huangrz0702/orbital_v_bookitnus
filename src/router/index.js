@@ -50,6 +50,11 @@ const routes = [
       name:"ContactPage",
       component: () => import("../views/Contact.vue"),
     },
+    {
+      path: "/Searchmain",
+      name:"Searchmain",
+      component: () => import("../views/Search-Main/index.vue"),
+    },
 ];
 
 const router = createRouter({
