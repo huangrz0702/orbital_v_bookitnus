@@ -9,7 +9,7 @@
                 <ul>
                     <router-link class = "link" to = "/">Home</router-link>
                     <router-link class = "link" to = "/Searchmain">Book Facilities</router-link>
-                    <router-link class = "link" to = "#">Forum</router-link>
+                    <router-link class = "link" to = "/BlogCreate">Forum</router-link>
                     <router-link class = "link" to = "/ProfilePage">User Profile</router-link>
                     <router-link class = "link" to = "/LoginPage">Login / Register</router-link>
                 </ul>

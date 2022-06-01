@@ -55,6 +55,12 @@ const routes = [
       name:"Searchmain",
       component: () => import("../views/Search-Main/index.vue"),
     },
+    {
+      path: "/BlogCreate",
+      name:"BlogCreate",
+      component: () => import("../views/Forum/BlogCreate.vue"),
+    },
+
 ];
 
 const router = createRouter({
