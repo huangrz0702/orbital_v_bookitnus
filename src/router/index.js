@@ -60,6 +60,11 @@ const routes = [
       name:"BlogCreate",
       component: () => import("../views/Forum/BlogCreate.vue"),
     },
+    {
+      path: "/BlogMain",
+      name:"BlogMain",
+      component: () => import("../views/Forum/BlogMain.vue"),
+    },
 
 ];
 
