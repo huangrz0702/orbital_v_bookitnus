@@ -17,7 +17,7 @@
 <script>
 import BlogCard from "../../components/BlogCard.vue";
 export default {
-    name: "BlogMainPage",
+    name: 'BlogMainPage',
     Component: {
         BlogCard
     },

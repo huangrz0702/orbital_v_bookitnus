@@ -12,8 +12,8 @@
 <script>
 
 export default {
-  name: "BlogCard",
-  props: ["post"],
+  name: 'BlogCard',
+  props: ['post'],
   Components: {},
 }
 </script>

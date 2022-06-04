@@ -8,15 +8,15 @@
       <div class="inputbox">
         <div class="inputbox">
           <label>Blog Title: </label>
-          <input placeholder="e.g. Basketball Experience" v-model="title" />
+          <input placeholder="e.g. Basketball Experience" />
         </div>
         <div class="inputbox">
           <label>Place: </label>
-          <input placeholder="e.g. PGP" v-model="place" />
+          <input placeholder="e.g. PGP"  />
         </div>
         <div class="inputbox">
           <label>Date: </label>
-          <input placeholder="e.g. June 1st" v-model="date" />
+          <input placeholder="e.g. June 1st" />
         </div>
       </div>
     </div>
