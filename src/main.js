@@ -16,7 +16,7 @@ const app = createApp(App)
 app.use(router)
 app.component("svg-icon", SvgIcon);
 app.component("QuillEditor", QuillEditor);
-app.component("BlogCard", BlogCard)
+app.component("BlogCard", BlogCard);
 app.mount('#app')
 
 

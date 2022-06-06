@@ -1,6 +1,6 @@
 <template>
   <div class="container-profile">
-    <h1>Greetings, User {{ name }} !</h1>
+    <h1>Greetings, User {{ name.split("@")[0].substring(1) }} !</h1>
     <h2>My account</h2>
     <p>View and edit your personal info below.</p>
 
@@ -29,21 +29,26 @@
         value="Change Password"
       />
     </form>
-    <br>
-    <hr>
+    <br />
+    <hr />
 
-    <h2>Display Name</h2>
-    <p>Change your display name here.</p>
+    <form class="changename" @submit.prevent="changename">
+      <h2>Display Name</h2>
+      <p>Change your display name here.</p>
+      <div class="input">
+        <input
+          type="displayname"
+          placeholder="Please Enter Your New Display name"
+          v-model="profile.name"
+          required
+        />
+      </div>
+      <input class="btn" id="changename" type="submit" value="Submit" />
+    </form>
+
+    <br />
+    <hr />
     <div class="input">
-      <input
-        type="displayname"
-        placeholder="Please Enter Your New Display name"
-        v-model="profile.name"
-        required
-      />
-      <br />
-      <hr />
-
       <h2>Place of Residence</h2>
       <p>Change your place of residence here.</p>
       <input
@@ -53,15 +58,15 @@
         required
       />
     </div>
+
     <br />
     <hr />
-
   </div>
 </template>
 
 <script>
 import { ref } from "vue";
-import { sendPasswordResetEmail } from "firebase/auth";
+import { sendPasswordResetEmail, signOut } from "firebase/auth";
 import { auth } from "../../firebase/firebaseinit.js";
 import "firebase/compat/auth";
 
@@ -95,9 +100,23 @@ export default {
     },
     async signout() {
       try {
-        await localStorage.clear();
+        await signOut(auth);
+        localStorage.setItem("currentuser", "");
         alert("You have signed out!");
         this.$router.push({ name: "LoginPage" });
+      } catch (error) {
+        console.log(error);
+        switch (error.code) {
+          default:
+            alert("Something went wrong");
+        }
+        return;
+      }
+    },
+    async changename() {
+      try {
+        await localStorage.setItem("currentuser", " " + this.profile.name);
+        alert("You have successfully changed your name!");
       } catch (error) {
         console.log(error);
         switch (error.code) {
@@ -156,10 +175,8 @@ hr {
   background: rgba(237, 209, 96, 0.669);
   color: black;
   font-size: 13px;
-  text-align: center;
   cursor: pointer;
   display: block;
-  padding: 10px, 10px;
   border: 0ch;
   border-radius: 30px;
   position: relative;
