@@ -65,6 +65,11 @@ const routes = [
       name:"BlogMain",
       component: () => import("../views/Forum/BlogMain.vue"),
     },
+    {
+      path: "/AllFac",
+      name:"AllFac",
+      component: () => import("../views/Search-Result/index.vue"),
+    },
 
 ];
 
