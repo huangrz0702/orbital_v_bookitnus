@@ -2,7 +2,7 @@
   <div class="searchbox">
     <div class="top-left">
       <section class="form">
-        <form action="/action_page.php">
+        <form>
           <h2>Search for facilities</h2>
           <label for="fac_type">Facility type:</label>
           <br /><br />

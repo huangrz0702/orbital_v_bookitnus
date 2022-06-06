@@ -41,7 +41,9 @@
                 <input
                 type="place of residence"
                 placeholder="Place of Residence"
-                required/>
+                required
+                v-model="register_form.place" 
+                />
                 <svg-icon class="icon" iconClass="house"></svg-icon>
             </div>
 
@@ -103,8 +105,10 @@ export default {
                 return
             }
 
-            await setDoc(doc(db, "users", auth.currentUser.uid), {
-                name: this.register_form.name
+            await setDoc(doc(db, "bookit-nus", auth.currentUser.uid), {
+                email: this.register_form.email,
+                displayName: this.register_form.name,
+                placeOfResdience: this.register_form.place
             })
 
             this.$router.push({ name: "HomePage"})

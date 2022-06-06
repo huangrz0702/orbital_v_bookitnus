@@ -14,14 +14,6 @@
       <h2>Change your password</h2>
       <p>Send an email to change your password.</p>
 
-      <div class="input">
-        <input
-          type="email"
-          placeholder="Please Enter Your Email"
-          v-model="profile.email"
-          required
-        />
-      </div>
       <input
         class="btn"
         id="changepassword"
@@ -87,7 +79,10 @@ export default {
   methods: {
     async changepassword() {
       try {
-        await sendPasswordResetEmail(auth, this.profile.email).then(() => {
+        await sendPasswordResetEmail(
+          auth,
+          localStorage.getItem("currentuser").slice(1, -1)
+        ).then(() => {
           alert("Password Reset Email Sent!");
         });
       } catch (error) {
