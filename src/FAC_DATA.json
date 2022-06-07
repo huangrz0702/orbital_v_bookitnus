@@ -1,0 +1,37 @@
+[
+    {
+      "id": 1,
+      "facName": "Raffles",
+      "blogCover": "1",
+      "facType": "indoor sports",
+      "facCharge": "no"
+    },
+    {
+        "id": 2,
+        "facName": "RVRC",
+        "blogCover": "2",
+        "facType": "outdoor sports",
+        "facCharge": "yes"
+    },
+    {
+        "id": 3,
+        "facName": "RVRC",
+        "blogCover": "2",
+        "facType": "outdoor sports",
+        "facCharge": "no"
+    },
+    {
+        "id": 4,
+        "facName": "Sheares",
+        "blogCover": "3",
+        "facType": "meeting room",
+        "facCharge": "no"
+    },
+    {
+        "id": 5,
+        "facName": "Tembusu",
+        "blogCover": "4",
+        "facType": "function room",
+        "facCharge": "no"
+    }
+  ]

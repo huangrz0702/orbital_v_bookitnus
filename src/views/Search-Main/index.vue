@@ -1,71 +1,19 @@
 <template>
-  <div class="searchbox">
-    <div class="top-left">
-      <section class="form">
-        <form>
-          <h2>Search for facilities</h2>
-          <label for="fac_type">Facility type:</label>
-          <br /><br />
-
-          <select name="fac_type" id="fac_type">
-            <option value="default">select an option</option>
-            <option value="in_sports">indoor sports</option>
-            <option value="out_sports">outdoor sports</option>
-            <option value="meet_room">meeting room</option>
-            <option value="func_room">function room</option>
-            <option value="others">others</option>
-          </select>
-          <br /><br />
-          <hr />
-          <br />
-
-          <label for="venue">Venue:</label>
-          <br /><br />
-          <select name="venue" id="venue">
-            <option value="default">select an option</option>
-            <option value="UT">Utown</option>
-            <option value="UTR">Utown Residence</option>
-            <option value="RC4">RC4</option>
-            <option value="RVRC">RVRC</option>
-            <option value="CAPT">CAPT</option>
-            <option value="Tembusu">Tembusu</option>
-            <option value="PGP">PGP</option>
-            <option value="KE">KE VII Hall</option>
-            <option value="Temasek">Temasek Hall</option>
-            <option value="Raffles">Raffles Hall</option>
-            <option value="KR">Kent Ridge Hall</option>
-            <option value="Sheares">Sheares Hall</option>
-          </select>
-          <br /><br />
-          <hr />
-          <br />
-
-          <label for="cost"
-            >Only show facilities that are free of charge?</label
-          >
-          <br /><br />
-          <select name="cost" id="cost">
-            <option value="free">yes</option>
-            <option value="nfree">no</option>
-          </select>
-          <br /><br />
-          <hr />
-          <br />
-
-          <input class="btn" type="submit" value="Search" />
-        </form>
-      </section>
+  <div class="container">
+    <div class="left">
+      <Filters
+        :filterPosts="filterPosts"
+        :search="search"
+        :filteredPosts="filteredPosts"
+      />
+      <Filters2 :filterPosts2="filterPosts2" :filteredPosts2="filteredPosts2" />
     </div>
     <div class="facmain">
       <div class="fac-card-wrap">
-        <div class="container">
+        <div class="fac-card-container">
           <h2>All Facilities</h2>
           <div class="fac-cards">
-            <FacCard
-              :post="post"
-              v-for="(post, index) in sampleFacCards"
-              :key="index"
-            />
+            <FacCard :post="post" v-for="post in posts" :key="post.id" />
           </div>
         </div>
       </div>
@@ -75,53 +23,126 @@
 
 <script>
 import FacCard from "../../components/FacCard.vue";
+import Filters from "../../components/Filters.vue";
+import Filters2 from "../../components/Filters2.vue";
 
 export default {
   name: "SearchMainPage",
   Component: {
     FacCard,
+    Filters,
+    Filters2,
   },
   data() {
     return {
-      sampleFacCards: [
+      posts: [
         {
+          id: 1,
           facName: "Raffles",
           blogCover: "1",
           facType: "indoor sports",
           facCharge: "no",
         },
         {
+          id: 2,
           facName: "RVRC",
           blogCover: "2",
           facType: "outdoor sports",
           facCharge: "yes",
         },
         {
+          id: 3,
           facName: "RVRC",
           blogCover: "2",
           facType: "outdoor sports",
           facCharge: "no",
         },
         {
+          id: 4,
           facName: "Sheares",
           blogCover: "3",
           facType: "meeting room",
           facCharge: "no",
         },
         {
+          id: 5,
           facName: "Tembusu",
           blogCover: "4",
           facType: "function room",
           facCharge: "no",
         },
       ],
+      str: "",
+      type: "",
     };
+  },
+  methods: {
+    filterPosts(catName) {
+      this.resetPosts();
+      if (catName !== "All") {
+        this.posts = this.posts.filter((post) => {
+          return post.facType === catName;
+        });
+      }
+    },
+    filterPosts2(catName) {
+      this.posts = this.posts;
+      this.posts = this.posts.filter((post) => {
+        return post.facCharge === catName;
+      });
+    },
+    search(term) {
+      this.resetPosts();
+      this.posts = this.posts.filter((post) => {
+        return post.facName.toLowerCase().includes(term.toLowerCase());
+      });
+    },
+
+    resetPosts() {
+      this.posts = [
+        {
+          id: 1,
+          facName: "Raffles",
+          blogCover: "1",
+          facType: "indoor sports",
+          facCharge: "free of charge",
+        },
+        {
+          id: 2,
+          facName: "RVRC",
+          blogCover: "2",
+          facType: "outdoor sports",
+          facCharge: "paid for use",
+        },
+        {
+          id: 3,
+          facName: "RVRC",
+          blogCover: "2",
+          facType: "outdoor sports",
+          facCharge: "free of charge",
+        },
+        {
+          id: 4,
+          facName: "Sheares",
+          blogCover: "3",
+          facType: "meeting room",
+          facCharge: "free of charge",
+        },
+        {
+          id: 5,
+          facName: "Tembusu",
+          blogCover: "4",
+          facType: "function room",
+          facCharge: "free of charge",
+        },
+      ];
+    },
   },
 };
 </script>
 
 <style lang="scss" scoped>
-.searchbox {
+.container {
   padding: 10vh;
   height: 100%;
   width: 100%;
@@ -130,8 +151,12 @@ export default {
   background-image: url("../../assets/image/about.jpeg");
 }
 
-.top-left {
+.left {
   padding-right: 30px;
+  position: relative;
+  padding: 80px 16px;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 30px;
 }
 
 .form {
@@ -167,31 +192,9 @@ select {
   outline: none;
 }
 
-input {
-  background-color: rgba(237, 209, 96, 0.669);
-  color: black;
-  padding: 10px;
-  width: 200px;
-  border: none;
-  font-size: 15px;
-  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
-  -webkit-appearance: button;
-  appearance: button;
-  outline: none;
-}
-
-.btn {
-  width: 50%;
-  padding: 10px;
-  border: 0ch;
-  border-radius: 30px;
-  cursor: pointer;
-  color: black(237, 209, 96, 0.669);
-}
-
 .facmain {
   position: relative;
-  padding: 18px;
+  padding: 0px 18px;
 }
 
 .fac-card-wrap {
@@ -202,7 +205,7 @@ input {
   @media (min-width: 500px) {
     padding: 100px 40px;
   }
-  .container {
+  .fac-card-container {
     .fac-cards {
       display: grid;
       gap: 32px;

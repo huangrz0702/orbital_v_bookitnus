@@ -1,22 +1,23 @@
 <template>
   <div class="fac-card">
-    <img :src="require(`../assets/blogCards/${post.blogCover}.jpeg`)" alt=""/>
     <div class="info">
-        <h4>{{ post.facName }}</h4>
-        <h6>Facility Type: {{ post.facType }}</h6>
-        <h6>Free Of Charge: {{ post.facCharge }}</h6>
-        <router-link class="link" to="#"> Book The Facility</router-link>
+      <img
+        :src="require(`../assets/blogCards/${post.blogCover}.jpeg`)"
+        alt=""
+      />
+      <h4>{{ post.facName }}</h4>
+      <h6>Facility Type: {{ post.facType }}</h6>
+      <h6>Free Of Charge: {{ post.facCharge }}</h6>
+      <router-link class="link" to="#"> Book The Facility</router-link>
     </div>
   </div>
 </template>
 
 <script>
-
 export default {
-  name: 'FacCard',
-  props: ['post'],
-  Components: {},
-}
+  name: "FacCard",
+  props: ["post"],
+};
 </script>
 
 <style lang="scss" scoped>
@@ -31,7 +32,8 @@ export default {
   transition: 0.5s ease all;
   &:hover {
     transform: rotateZ(-1deg) scale(1.01);
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+      0 2px 4px -1px rgba(0, 0, 0, 0.06);
   }
 
   img {
