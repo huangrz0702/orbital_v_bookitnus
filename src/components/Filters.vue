@@ -29,7 +29,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 input {
   background-color: whitesmoke;
   color: black;
@@ -57,5 +57,9 @@ p {
   text-align: center;
   margin-top: 20px;
   cursor: pointer;
+  transition: 0.5s ease-in all;
+  &:hover {
+    color: rgba(153, 126, 18, 0.669);
+  }
 }
 </style>

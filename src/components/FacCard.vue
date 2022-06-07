@@ -71,7 +71,7 @@ export default {
       padding-bottom: 4px;
       transition: 0.5s ease-in all;
       &:hover {
-        color: rgba(48, 48, 48, 0.8);
+        color: rgba(237, 209, 96, 0.669);
       }
       .arrow {
         width: 10px;
