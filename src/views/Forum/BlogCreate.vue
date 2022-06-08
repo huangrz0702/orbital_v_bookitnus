@@ -18,8 +18,24 @@
           <label>Date: </label>
           <input placeholder="e.g. June 1st" />
         </div>
+        <div class="inputbox">
+          <label for="blog-photo">Upload Cover Photo</label>
+        <input
+          type="file"
+          ref="blogPhoto"
+          id="blog-photo"
+          @change="fileChange"
+          accept=".png, .jpg, ,jpeg"
+        /> 
+        </div>
       </div>
     </div>
+
+    <div class="blog-actions">
+      <button @click="uploadBlog">Publish Blog</button>
+      <router-link class="router-button" to="#">Post Preview</router-link>
+    </div>
+  
 
     <div class="textcontainer">
       <QuillEditor
@@ -28,10 +44,9 @@
         theme="snow"
         toolbar="full"
       />
-    
-    <button class="btn" v-on:click="upload()">Upload</button>
     </div>
-  </div>
+   </div>
+
 </template>
 
 
@@ -107,6 +122,12 @@ textarea {
   border-radius: 30px;
   cursor: pointer;
   color: black(237, 209, 96, 0.669);
+}
+
+.blog-actions {
+    margin-top: 30px;
+    text-align: center;
+    
 }
 
 </style>
