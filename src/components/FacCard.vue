@@ -8,22 +8,52 @@
       <h4>{{ post.facName }}</h4>
       <h6>Facility Type: {{ post.facType }}</h6>
       <h6>Free Of Charge: {{ post.facCharge }}</h6>
-      <router-link class="link" to="#"> Book The Facility</router-link>
+      <br /><br />
+      <button class="btn" @click="() => TogglePopup('buttonTrigger')">
+        Book The Facility
+      </button>
+      <Popup
+        v-if="popupTriggers.buttonTrigger"
+        :TogglePopup="() => TogglePopup('buttonTrigger')"
+      >
+      </Popup>
     </div>
   </div>
 </template>
 
 <script>
+import { ref } from "vue";
+import Popup from "@/components/Popup.vue";
 export default {
   name: "FacCard",
   props: ["post"],
+  setup() {
+    const popupTriggers = ref({
+      buttonTrigger: false,
+    });
+    const TogglePopup = (trigger) => {
+      popupTriggers.value[trigger] = !popupTriggers.value[trigger];
+    };
+    return {
+      Popup,
+      popupTriggers,
+      TogglePopup,
+    };
+  },
 };
 </script>
 
 <style lang="scss" scoped>
+.btn {
+  width: 90%;
+  padding: 10px;
+  border: 0ch;
+  border-radius: 30px;
+  cursor: pointer;
+}
+
 .fac-card {
   position: relative;
-  cursor: pointer;
   display: flex;
   flex-direction: column;
   border-radius: 8px;
