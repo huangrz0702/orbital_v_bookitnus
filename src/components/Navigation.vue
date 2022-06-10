@@ -1,45 +1,140 @@
 <template>
-<header>
+  <link href="https://css.gg/chevron-double-down.css" rel="stylesheet" />
+  <header>
     <nav>
-        <div class = "container">
-            <div class = "branding">
-                <router-link class="header" :to="{ name: 'HomePage' }">BOOKit@NUS</router-link>
-            </div>
-            <div class = "nav-links">
-                <ul>
-                    <router-link class = "link" to = "/">Home</router-link>
-                    <router-link class = "link" to = "/Searchmain">Book Facilities</router-link>
-                    <router-link class = "link" to = "/BlogCreate">Blog Create</router-link>
-                    <router-link class = "link" to = "/BlogMain">Forum</router-link>
-                    <router-link class = "link" to = "/ProfilePage">User Profile</router-link>
-                    <router-link class = "link" to = "/LoginPage">Login / Register</router-link>
-                </ul>
-            </div>
+      <div class="container">
+        <div class="branding">
+          <router-link class="header" :to="{ name: 'HomePage' }"
+            >BOOKit@NUS</router-link
+          >
         </div>
-    </nav>
+        <div class="nav-links">
+          <router-link class="link" to="/">Home</router-link>
+          <div class="dropdown">
+            <button class="dropbtn">
+              FACILITIES
+              <i class="gg-chevron-double-down"></i>
+              <div class="dropdown-content">
+                <router-link class="link" to="/Searchmain"
+                  >Find Facilities</router-link
+                >
+                <router-link class="link" to="/AllFac"
+                  >All Facilities</router-link
+                >
+              </div>
+            </button>
+          </div>
 
-</header>
+          <div class="dropdown">
+            <button class="dropbtn">
+              FORUM
+              <i class="gg-chevron-double-down"></i>
+              <div class="dropdown-content">
+                <router-link class="link" to="/BlogCreate"
+                  >Blog Create</router-link
+                >
+                <router-link class="link" to="/BlogMain">Forum</router-link>
+              </div>
+            </button>
+          </div>
+
+          <div class="dropdown">
+            <button class="dropbtn">
+              USER
+              <i class="gg-chevron-double-down"></i>
+              <div class="dropdown-content">
+                <router-link class="link" to="/ProfilePage"
+                  >User Profile</router-link
+                >
+                <router-link class="link" to="/LoginPage"
+                  >Login / Register</router-link
+                >
+              </div>
+            </button>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
 </template>
 
 <script>
 export default {
-    name: 'navigationBar'
+  name: "navigationBar",
 };
 </script>
 
 
 <style lang="scss" scoped>
 header {
-    background: rgb(235,170,155);
-    background: linear-gradient(180deg, rgba(235,170,155,1) 0%, rgba(255,207,134,1) 51%, rgba(241,235,190,1) 100%);
-    padding: 0 25px;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    z-index: 99;
+  background: rgb(235, 170, 155);
+  background: linear-gradient(
+    180deg,
+    rgba(235, 170, 155, 1) 0%,
+    rgba(255, 207, 134, 1) 51%,
+    rgba(241, 235, 190, 1) 100%
+  );
+  padding: 0 25px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  z-index: 99;
+}
+
+.dropdown {
+  float: right;
+  display: flex;
+  overflow: hidden;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.dropdown .dropbtn {
+  font-size: 16px;
+  border: none;
+  outline: none;
+  color: black;
+  padding: 14px 16px;
+  background-color: inherit;
+  font-family: inherit;
+  margin: 0;
+}
+
+.dropdown:hover .dropbtn {
+  color: #253db3;
+}
+
+.dropdown-content a {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.gg-chevron-double-down {
+    display: inline;
+    color:rgba(235, 170, 155, 1)
 }
 
 .container {
   display: flex;
-  padding: 25px 0;
+  padding: 25px 100px 25px 25px;
 
   .branding {
     display: flex;
@@ -51,8 +146,8 @@ header {
       font-weight: 600;
     }
     .logo {
-       max-width: 20px;
-       max-height: 10px;
+      max-width: 20px;
+      max-height: 10px;
     }
   }
 
@@ -64,128 +159,11 @@ header {
     justify-content: flex-end;
     align-items: center;
 
-    ul {
-      margin-right: 32px;
-      display: none;
-      @media (min-width: 500px) {
-        display: initial;
-      }
-
-      .link {
-        margin-right: 32px;
-      }
-
-      .link:last-child {
-        margin-right: 0;
-      }
-    }
-
     .link {
       color: black;
       &:hover {
         color: #253db3;
       }
-    }
-  }
-
-  .profile {
-    position: relative;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    color: #fff;
-    background-color: #303030;
-
-    span {
-      pointer-events: none;
-    }
-
-    .profile-menu {
-      top: 60px;
-      right: 0px;
-      position: absolute;
-      width: 250px;
-      background-color: #303030;
-      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-
-      span {
-        position: absolute;
-        right: 10px;
-        top: -10px;
-        border-left: 10px solid transparent;
-        border-right: 10px solid transparent;
-        border-bottom: 10px solid #303030;
-      }
-
-      .info {
-        display: flex;
-        align-items: center;
-        padding: 15px;
-        border-bottom: 1px solid #fff;
-
-        .initials {
-          position: initial;
-          width: 40px;
-          height: 40px;
-          background-color: #fff;
-          color: #303030;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          border-radius: 50%;
-        }
-
-        div {
-          flex: 1;
-          margin-left: 24px;
-        }
-
-        p:nth-child(1) {
-          font-size: 14px;
-        }
-
-        p:nth-child(2),
-        p:nth-child(3) {
-          font-size: 12px;
-        }
-      }
-
-      .options {
-        padding: 15px;
-        .option {
-          text-decoration: none;
-          color: #fff;
-          display: flex;
-          align-items: center;
-          margin-bottom: 12px;
-
-          .icon {
-            width: 18px;
-            height: auto;
-          }
-
-          i {
-            font-size: 18px;
-          }
-
-          p {
-            font-size: 14px;
-            margin-left: 12px;
-          }
-        }
-        .option:last-child {
-          margin-bottom: 0px;
-        }
-      }
-    }
-
-    img {
-      width: 35px;
-      height: 35px;
     }
   }
 }
@@ -194,7 +172,7 @@ header {
   text-decoration: none;
   color: #fff;
   font-weight: 500;
-  padding: 0 8px;
+  padding: 0 25px;
   text-transform: uppercase;
   transition: 300ms color ease;
 
@@ -202,5 +180,4 @@ header {
     color: #1eb8b8;
   }
 }
-
 </style>
