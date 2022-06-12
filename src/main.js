@@ -10,9 +10,9 @@ import "@vueup/vue-quill/dist/vue-quill.snow.css";
 
 import BlogCard from "./components/BlogCard.vue";
 import FacCard from "./components/FacCard.vue";
-import Filters from "./components/Filters.vue";
-import Filters2 from "./components/Filters2.vue";
-import Popup from "./components/Popup.vue";
+import FiltersF from "./components/FiltersF.vue";
+import Filters2F from "./components/Filters2F.vue";
+import PopUp from "./components/PopupF.vue";
 
 const app = createApp(App)
 
@@ -21,9 +21,9 @@ app.component("svg-icon", SvgIcon);
 app.component("QuillEditor", QuillEditor);
 app.component("BlogCard", BlogCard);
 app.component("FacCard", FacCard);
-app.component("Filters",Filters);
-app.component("Filters2",Filters2);
-app.component("Popup",Popup);
+app.component("FiltersF",FiltersF);
+app.component("Filters2F",Filters2F);
+app.component("PopUp",PopUp);
 
 app.mount('#app')
 

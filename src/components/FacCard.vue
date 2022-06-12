@@ -12,18 +12,19 @@
       <button class="btn" @click="() => TogglePopup('buttonTrigger')">
         Book The Facility
       </button>
-      <Popup
+      <PopUp
         v-if="popupTriggers.buttonTrigger"
         :TogglePopup="() => TogglePopup('buttonTrigger')"
       >
-      </Popup>
+      </PopUp>
     </div>
   </div>
 </template>
 
 <script>
 import { ref } from "vue";
-import Popup from "@/components/Popup.vue";
+import Popup from "@/components/PopupF.vue";
+
 export default {
   name: "FacCard",
   props: ["post"],

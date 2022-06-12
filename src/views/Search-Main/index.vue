@@ -1,12 +1,12 @@
 <template>
   <div class="container">
     <div class="left">
-      <Filters
+      <FiltersF
         :filterPosts="filterPosts"
         :search="search"
         :filteredPosts="filteredPosts"
       />
-      <Filters2 :filterPosts2="filterPosts2" :filteredPosts2="filteredPosts2" />
+      <Filters2F :filterPosts2="filterPosts2" :filteredPosts2="filteredPosts2" />
     </div>
     <div class="facmain">
       <div class="fac-card-wrap">
@@ -23,15 +23,15 @@
 
 <script>
 import FacCard from "../../components/FacCard.vue";
-import Filters from "../../components/Filters.vue";
-import Filters2 from "../../components/Filters2.vue";
+import FiltersF from "../../components/FiltersF.vue";
+import Filters2F from "../../components/Filters2F.vue";
 
 export default {
   name: "SearchMainPage",
   Component: {
     FacCard,
-    Filters,
-    Filters2,
+    FiltersF,
+    Filters2F,
   },
   data() {
     return {
@@ -74,6 +74,7 @@ export default {
       ],
       str: "",
       type: "",
+      newPost: [],
     };
   },
   methods: {
@@ -86,7 +87,6 @@ export default {
       }
     },
     filterPosts2(catName) {
-      this.posts = this.posts;
       this.posts = this.posts.filter((post) => {
         return post.facCharge === catName;
       });
