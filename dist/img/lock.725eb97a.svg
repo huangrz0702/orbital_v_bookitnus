@@ -1,0 +1,10 @@
+var _interopRequireWildcard = require("/Users/renzhou/orbital_v_bookitnus/node_modules/@babel/runtime/helpers/interopRequireWildcard.js").default;
+
+var _vue = _interopRequireWildcard(require("vue"));
+
+_vue.createVNode("template", null, [_vue.createVNode("svg", {
+  "xmlns": "http://www.w3.org/2000/svg",
+  "viewBox": "0 0 225 225"
+}, [_vue.createVNode("path", {
+  "d": "M215.2 64.961h-32.301V0H42.102v64.961H9.8V225h205.4V64.961zM57.102 15h110.797v49.961H57.102V15zM200.2 210H24.8V79.961h175.4V210zM93.635 161.402v18.059c0 10.376 8.442 18.817 18.818 18.817s18.817-8.441 18.817-18.817v-18.059c6.876-5.616 11.003-14.128 11.003-23.124 0-16.443-13.377-29.82-29.821-29.82-16.443 0-29.821 13.377-29.821 29.82.001 8.995 4.129 17.507 11.004 23.124zm18.818-37.943c8.172 0 14.821 6.648 14.821 14.82 0 5.221-2.802 10.116-7.312 12.775l-3.691 2.176v26.231a3.82 3.82 0 01-3.817 3.817 3.822 3.822 0 01-3.818-3.817V153.23l-3.69-2.176c-4.511-2.66-7.313-7.555-7.313-12.776-.001-8.172 6.648-14.819 14.82-14.819z"
+}, null)])]);
