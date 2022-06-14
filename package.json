@@ -3,10 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "start": "vue-cli-service start",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint",
-    "start": "web npm start"
+    "lint": "vue-cli-service lint"
   },
   "dependencies": {
     "@vueup/vue-quill": "^1.0.0-beta.8",
@@ -25,6 +25,7 @@
     "@vue/cli-service": "~5.0.0",
     "eslint": "^7.32.0",
     "eslint-plugin-vue": "^8.0.3",
+    "nodemon": "^2.0.16",
     "sass": "^1.26.5",
     "sass-loader": "^8.0.2",
     "svg-sprite-loader": "^6.0.11",
