@@ -8,7 +8,7 @@
       <div class="inputbox">
         <div class="inputbox">
           <label>Blog Title: </label>
-          <input placeholder="e.g. Basketball Experience" />
+          <input type="text" placeholder="e.g. Basketball Experience" />
         </div>
         <div class="inputbox">
           <label>Place: </label>
@@ -127,6 +127,11 @@ textarea {
 .blog-actions {
     margin-top: 30px;
     text-align: center;
+    display: flex;
+    
+    button {
+      margin-right: 16px;
+    }
     
 }
 
