@@ -21,8 +21,8 @@
           <h3>Quick Links</h3>
           <ul>
             <router-link class="link" to="/RegisterPage">Register / Login</router-link><br>
-            <router-link class="link" to="/BookingPage">Booking</router-link><br>
-            <router-link class="link" to="/ForumPage">Forum</router-link><br>
+            <router-link class="link" to="/AllFac">Booking</router-link><br>
+            <router-link class="link" to="/BlogMain">Forum</router-link><br>
             <router-link class="link" to="/ContactPage">Contact Admin</router-link><br>
           </ul>
         </div>
