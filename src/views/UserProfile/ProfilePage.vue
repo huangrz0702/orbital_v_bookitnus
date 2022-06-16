@@ -81,7 +81,7 @@ export default {
       try {
         await sendPasswordResetEmail(
           auth,
-          localStorage.getItem("currentuser").slice(1, -1)
+          auth.currentUser.email
         ).then(() => {
           alert("Password Reset Email Sent!");
         });
