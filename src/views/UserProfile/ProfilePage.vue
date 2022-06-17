@@ -40,16 +40,23 @@
 
     <br />
     <hr />
-    <div class="input">
-      <h2>Place of Residence</h2>
-      <p>Change your place of residence here.</p>
-      <input
-        type="residence"
-        placeholder="Please Enter Your New Place of Residence"
-        v-model="profile.residence"
-        required
-      />
-    </div>
+    <form class="info" @submit.prevent="checkbooking">
+      <div class="input">
+        <input
+          class="btn"
+          id="bookHist"
+          type="submit"
+          value="My Booking History"
+        />
+        <br />
+        <input
+          class="btn"
+          id="forumPosts"
+          type="submit"
+          value="My Forum Posts"
+        />
+      </div>
+    </form>
 
     <br />
     <hr />
@@ -79,10 +86,7 @@ export default {
   methods: {
     async changepassword() {
       try {
-        await sendPasswordResetEmail(
-          auth,
-          auth.currentUser.email
-        ).then(() => {
+        await sendPasswordResetEmail(auth, auth.currentUser.email).then(() => {
           alert("Password Reset Email Sent!");
         });
       } catch (error) {
@@ -112,6 +116,18 @@ export default {
       try {
         await localStorage.setItem("currentuser", " " + this.profile.name);
         alert("You have successfully changed your name!");
+      } catch (error) {
+        console.log(error);
+        switch (error.code) {
+          default:
+            alert("Something went wrong");
+        }
+        return;
+      }
+    },
+    async checkbooking() {
+      try {
+        this.$router.push({ name: "bookHist" });
       } catch (error) {
         console.log(error);
         switch (error.code) {

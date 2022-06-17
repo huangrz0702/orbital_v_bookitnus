@@ -28,7 +28,9 @@
 <script>
 import { ref } from "vue";
 import { auth, db } from "../firebase/firebaseinit";
-import { doc, setDoc } from "firebase/firestore";
+// import { doc, setDoc } from "firebase/firestore";
+import { collection, addDoc } from "firebase/firestore"; 
+
 
 export default {
   setup() {
@@ -42,8 +44,7 @@ export default {
   methods: {
     async book() {
       try {
-        await setDoc(
-          doc(db, "bookingDetails", auth.currentUser.uid + "booking1"),
+        await addDoc(collection(db, "bookingDetails"),
           {
             email: auth.currentUser.email,
             venue: this.book_form.venue,
@@ -54,9 +55,11 @@ export default {
           alert("Book successfully!");
         });
       } catch (error) {
+        console.log(error)
         switch (error.code) {
           default:
-            alert("Something went wrong");
+            alert("Please log in first!");
+            this.$router.push({ name: "LoginPage" })
         }
         return;
       }

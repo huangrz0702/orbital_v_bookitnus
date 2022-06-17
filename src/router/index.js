@@ -103,6 +103,11 @@ const routes = [
       name:"AllFac",
       component: () => import("../views/Search-Result/index.vue"),
     },
+    {
+      path: "/bookHist",
+      name:"bookHist",
+      component: () => import("../views/UserProfile/bookHist.vue"),
+    },
 
 ];
 
