@@ -46,7 +46,7 @@
       </div>
 
       <div class="blog-actions">
-        <button class="btn" type="submit">Publish Blog</button>
+        <button class="btn" type="submit" @click = "publish">Publish Blog</button>
       </div>
     </div>
   </form>
@@ -68,6 +68,13 @@ export default {
   },
 
   methods: {
+    fileChange() {
+      this.file = this.$refs.blogPhoto.files[0];
+      const fileName = this.file.name;
+      this.$store.commit("fileNameChange", fileName);
+      this.$store.commit("createFileURL", URL.createObjectURL(this.file));
+    },
+
     async publish() {
       try {
         await addDoc(collection(db, "blogDetails"), {
