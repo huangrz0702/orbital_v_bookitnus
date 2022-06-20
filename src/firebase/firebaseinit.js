@@ -3,6 +3,7 @@ import { getFirestore } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
 import { getStorage } from "firebase/storage";
 
+
 var firebaseConfig = {
     apiKey: "AIzaSyA2Y2ope7aUrF9aNbB5CHciMSVQD4NgURY",
     authDomain: "bookit-nus.firebaseapp.com",
@@ -17,5 +18,6 @@ var firebaseConfig = {
   const db = getFirestore(app);
   const auth = getAuth();
   const storage = getStorage(app);
+
   
-  export { app, db, auth, storage }
+  export { app, db, auth, storage}

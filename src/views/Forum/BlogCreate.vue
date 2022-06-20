@@ -53,7 +53,8 @@
 </template>
 
 <script>
-import { ref, uploadBytes } from "firebase/storage";
+import {ref} from "vue";
+import {uploadBytes } from "firebase/storage";
 import { auth, db } from "../../firebase/firebaseinit";
 // import { doc, setDoc } from "firebase/firestore";
 import { collection, addDoc, storage, doc, setDoc, } from "firebase/firestore";
