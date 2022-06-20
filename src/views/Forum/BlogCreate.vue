@@ -53,12 +53,23 @@
 </template>
 
 <script>
-import { ref } from "vue";
+import { ref, uploadBytes } from "firebase/storage";
 import { auth, db } from "../../firebase/firebaseinit";
 // import { doc, setDoc } from "firebase/firestore";
-import { collection, addDoc } from "firebase/firestore";
+import { collection, addDoc, storage, doc, setDoc, } from "firebase/firestore";
 
 export default {
+  data() {
+    return {
+      title: null,
+      venue: null,
+      date: null,
+      content: null,
+      file: null,
+      fileURL: null,
+      fileName: null,
+    };
+  },
   setup() {
     const blog = ref({});
 
@@ -70,27 +81,47 @@ export default {
   methods: {
     fileChange() {
       this.file = this.$refs.blogPhoto.files[0];
-      const fileName = this.file.name;
-      this.$store.commit("fileNameChange", fileName);
-      this.$store.commit("createFileURL", URL.createObjectURL(this.file));
+      this.fileName = this.file.name;
+      this.fileURL = URL.createObjectURL(this.file);
+      //this.$store.commit("fileNameChange", this.fileName);
+      //this.$store.commit("createFileURL", URL.createObjectURL(this.file));
     },
+    
 
     async publish() {
       try {
-        await addDoc(collection(db, "blogDetails"), {
-          email: auth.currentUser.email,
-          title: this.blog.title,
-          venue: this.blog.venue,
-          date: this.blog.date,
-          content: this.blog.content,
-        }).then(() => {
-          alert("Publish successfully!");
+        const imgRef = ref(
+          storage,
+          "blogs/" + auth.currentUser.email  + "/" + this.fileName
+        );
+        uploadBytes(imgRef, this.file).then((snapshot) => {
+          console.log(snapshot);
         });
+        const res = await addDoc(collection(db, "blogDetails"), {
+              email: auth.currentUser.email,
+              title: this.blog.title,
+              venue: this.blog.venue,
+              date: this.blog.date,
+              content: this.blog.content,
+              coverPhoto:
+                "blogs/" + auth.currentUser.email + "/" + this.fileName,
+            });
+
+        console.log(res);
+
+        await setDoc(
+          doc(db, "users/" + auth.currentUser.email + "/blogs", res.id),
+          {
+            id: res.id,
+          }
+        );
+
+        alert("Upload successfully!");
       } catch (error) {
         console.log(error);
         switch (error.code) {
           default:
-            alert("Please log in first!");
+            //alert("Please log in first!");
             this.$router.push({ name: "LoginPage" });
         }
         return;
