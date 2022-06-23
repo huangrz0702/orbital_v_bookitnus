@@ -1,11 +1,12 @@
-import { createStore } from "vuex";
 import router from "../router";
+import Vuex from 'vuex'
 import { db, auth } from "../firebase/index";
 import { signOut} from "firebase/auth";
-import { doc, getDoc, setDoc, updateDoc} from "firebase/firestore";
 import * as firebase from 'firebase'
 
-export default createStore({
+Vue.use(Vuex)
+
+export default new Vuex.Store({
     state :{
         user: null,
         username: "",
@@ -46,7 +47,7 @@ export default createStore({
 
         createBlog ({commit, getters}, payload) {
             const blog = {
-                creatorId: getters.user.id,
+                creatorId: getters.user.auth.email,
                 title: payload.title,
                 venue: payload.location,
                 date: payload.date,
@@ -56,16 +57,24 @@ export default createStore({
             firebase.database().ref('blogs').push(blog)
                 .then((data) => {
                     const key = data.key;
-
                     return key
             })
             .then((key) => {
                 const filename = payload.image.name
                 const ext = filename.slice(filename.lastIndexOf('.'))
                 firebase.storage().ref('blogs/' + key + '.' + ext).put(payload.image)
-                //need do more
+            })
+            .then(fileData => {
+                imageUrl = fileData.metadata.downloadURLs[0]
+                return firebase.database().ref('blogs').child(key).update({imageUrl: imageUrl})
 
-
+            })
+            .then(() => {
+                commit('createBlog', {
+                    ...blog,
+                    imageUrl:imageUrl,
+                    id:key
+                })
             })
             .catch((error) => {
                 console.log(error)

@@ -13,24 +13,25 @@
               type="text"
               placeholder="e.g. Basketball Experience"
               required
-              v-model="blog.title"
+              v-model="title"
             />
           </div>
           <div class="inputbox">
             <label>Place: </label>
-            <input placeholder="e.g. PGP" required v-model="blog.venue" />
+            <input placeholder="e.g. PGP" required v-model="venue" />
           </div>
           <div class="inputbox">
             <label>Date: </label>
-            <input placeholder="e.g. June 1st" required v-model="blog.date" />
+            <input placeholder="e.g. June 1st" required v-model="date" />
           </div>
           <div class="inputbox">
-            <label for="blog-photo">Upload Cover Photo</label>
+            <img :src="imageUrl" height="150">
+            <label for="blog-photo" @click = "onPickFile">Upload Cover Photo</label>
             <input
               type="file"
               ref="blogPhoto"
               id="blog-photo"
-              @change="fileChange"
+              @change="onFilepicked"
               accept=".png, .jpg, ,jpeg"
             />
           </div>
@@ -38,7 +39,7 @@
       </div>
 
       <div class="textcontainer">
-        <textarea required v-model="blog.content" />
+        <textarea required v-model="content" />
       </div>
 
       <div class="blog-preview">
@@ -53,81 +54,61 @@
 </template>
 
 <script>
-import {ref} from "vue";
-import {uploadBytes } from "firebase/storage";
-import { auth, db } from "../../firebase/firebaseinit";
-// import { doc, setDoc } from "firebase/firestore";
-import { collection, addDoc, storage, doc, setDoc, } from "firebase/firestore";
 
 export default {
   data() {
     return {
-      title: null,
-      venue: null,
-      date: null,
-      content: null,
-      file: null,
-      fileURL: null,
-      fileName: null,
+      title: '',
+      venue: '',
+      date: '',
+      content: '',
+      imageUrl: '',
     };
   },
-  setup() {
-    const blog = ref({});
-
-    return {
-      blog,
-    };
+  computed : {
+    formIsValid () {
+      return this.title !== '' &&
+      this.venue !== '' &&
+      this.imageUrl !== '' &&
+      this.date !== ''&&
+      this.content !== ''
+    },
   },
 
   methods: {
-    fileChange() {
-      this.file = this.$refs.blogPhoto.files[0];
-      this.fileName = this.file.name;
-      this.fileURL = URL.createObjectURL(this.file);
-      //this.$store.commit("fileNameChange", this.fileName);
-      //this.$store.commit("createFileURL", URL.createObjectURL(this.file));
+    onPickFile() {
+      this.$refs.blogPhoto.click();
+    },
+
+    onFilePicked(event) {
+      const files = event.target.files;
+      let fileName = files[0].name;
+      if (fileName.lastIndexOf(".") <= 0) {
+        return alert('Please upload a valid image file');
+      }
+      const fileReader = new FileReader()
+      fileReader.addEventListener("load", () => {
+        this.imageUrl = fileReader.result
+      })
+      fileReader.readAsDataURL(files[0])
+      this.image = files[0];
     },
     
 
-    async publish() {
-      try {
-        const imgRef = ref(
-          storage,
-          "blogs/" + auth.currentUser.email  + "/" + this.fileName
-        );
-        uploadBytes(imgRef, this.file).then((snapshot) => {
-          console.log(snapshot);
-        });
-        const res = await addDoc(collection(db, "blogDetails"), {
-              email: auth.currentUser.email,
-              title: this.blog.title,
-              venue: this.blog.venue,
-              date: this.blog.date,
-              content: this.blog.content,
-              coverPhoto:
-                "blogs/" + auth.currentUser.email + "/" + this.fileName,
-            });
-
-        console.log(res);
-
-        await setDoc(
-          doc(db, "users/" + auth.currentUser.email + "/blogs", res.id),
-          {
-            id: res.id,
-          }
-        );
-
-        alert("Upload successfully!");
-      } catch (error) {
-        console.log(error);
-        switch (error.code) {
-          default:
-            //alert("Please log in first!");
-            this.$router.push({ name: "LoginPage" });
-        }
-        return;
+    publish() {
+      if (!this.formIsValid) {
+        return
       }
-      this.$router.push({ name: "HomePage" });
+      const blog = {
+        title: this.title,
+        venue: this.venue,
+        imageUrl: this.imageUrl,
+        content: this.content,
+        date: this.date
+      }
+      this.$store.dispatch('createBlog', blog)
+      this.$router.push('/blogs')
+      alert("success!")
     },
   },
 };
