@@ -24,17 +24,17 @@
             <label>Date: </label>
             <input placeholder="e.g. June 1st" required v-model="date" />
           </div>
-          <div class="inputbox">
-            <img :src="imageUrl" height="150">
-            <label for="blog-photo" @click = "onPickFile">Upload Cover Photo</label>
-            <input
-              type="file"
-              ref="blogPhoto"
-              id="blog-photo"
-              @change="onFilepicked"
-              accept=".png, .jpg, ,jpeg"
-            />
-          </div>
+         <div >
+           <button @click="click1">choose a photo</button>
+           <input type="file" ref="input1"
+            style="display: none"
+            @change="previewImage" accept="image/*" >                
+         </div>
+ 
+       <div v-if="imageData!=null">                     
+          <img class="preview" height="268" width="356" :src="img1">
+       <br>
+       </div>  
         </div>
       </div>
 
@@ -54,6 +54,8 @@
 </template>
 
 <script>
+import firebase from 'firebase/app';
+
 
 export default {
   data() {
@@ -62,56 +64,54 @@ export default {
       venue: '',
       date: '',
       content: '',
-      imageUrl: '',
+      img1: '',
+      imageData: null
     };
-  },
-  computed : {
-    formIsValid () {
-      return this.title !== '' &&
-      this.venue !== '' &&
-      this.imageUrl !== '' &&
-      this.date !== ''&&
-      this.content !== ''
-    },
   },
 
   methods: {
-    onPickFile() {
-      this.$refs.blogPhoto.click();
-    },
-
-    onFilePicked(event) {
-      const files = event.target.files;
-      let fileName = files[0].name;
-      if (fileName.lastIndexOf(".") <= 0) {
-        return alert('Please upload a valid image file');
-      }
-      const fileReader = new FileReader()
-      fileReader.addEventListener("load", () => {
-        this.imageUrl = fileReader.result
-      })
-      fileReader.readAsDataURL(files[0])
-      this.image = files[0];
-    },
-    
-
-    publish() {
-      if (!this.formIsValid) {
-        return
-      }
+    create () {
       const blog = {
-        title: this.title,
+        photo: this.img1,
+        title:this.title,
         venue: this.venue,
-        imageUrl: this.imageUrl,
-        content: this.content,
-        date: this.date
+        date:this.date,
+        content:this.content        
       }
-      this.$store.dispatch('createBlog', blog)
-      this.$router.push('/blogs')
-      alert("success!")
+      firebase.database().ref('Blogs').push(blog)
+      .then((response) => {
+        console.log(response)
+      })
+      .catch(err => {
+        console.log(err)
+      })
     },
+    click1() {
+    this.$refs.input1.click()   
   },
-};
+  previewImage(event) {
+    this.uploadValue=0;
+    this.img1=null;
+    this.imageData = event.target.files[0];
+    this.onUpload()
+  },
+  onUpload(){
+    this.img1=null;
+    const storageRef=firebase.storage().ref(`${this.imageData.name}`).put(this.imageData);
+    storageRef.on(`state_changed`,snapshot=>{
+    this.uploadValue = (snapshot.bytesTransferred/snapshot.totalBytes)*100;
+      }, error=>{console.log(error.message)},
+    ()=>{this.uploadValue=100;
+        storageRef.snapshot.ref.getDownloadURL().then((url)=>{
+            this.img1 =url;
+            console.log(this.img1)
+          });
+        }      
+      );
+  },
+  }
+}
+
 </script>
 
 
