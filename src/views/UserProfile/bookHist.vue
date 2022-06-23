@@ -12,7 +12,7 @@
         </thead>
 
         <tbody>
-          <tr v-for="booking in bookings" :key="booking.id">
+          <tr v-for="booking in bookings" :key="booking">
             <td>
               {{ booking.venue }}
             </td>
@@ -26,7 +26,14 @@
             </td>
 
             <td>
-              <button class="btn" @click="editBooking(booking)">Edit</button>
+              <button class="btn" @click="() => TogglePopup('buttonTrigger')">
+                Edit
+              </button>
+              <PopUp
+                v-if="popupTriggers.buttonTrigger"
+                :TogglePopup="() => TogglePopup('buttonTrigger')"
+              >
+              </PopUp>
               <br />
               <button class="btn" @click="deleteBooking(booking)">
                 Delete
@@ -40,15 +47,70 @@
 </template>
 
 <script>
+import { ref } from "vue";
 import { db } from "../../firebase/firebaseinit";
-import { onSnapshot, collection, query, where } from "firebase/firestore";
+import Popup from "../../components/PopupF.vue";
+
+import {
+  onSnapshot,
+  collection,
+  query,
+  where,
+  doc,
+  deleteDoc,
+  //updateDoc,
+} from "firebase/firestore";
 
 export default {
+  setup() {
+    const popupTriggers = ref({
+      buttonTrigger: false,
+    });
+    const TogglePopup = (trigger) => {
+      popupTriggers.value[trigger] = !popupTriggers.value[trigger];
+    };
+    return {
+      Popup,
+      popupTriggers,
+      TogglePopup,
+    };
+  },
   data() {
     return {
       currentUser: localStorage.getItem("currentuser"),
       bookings: [],
+      bookingsId: [],
     };
+  },
+
+  methods: {
+    
+    deleteBooking(booking) {
+      const index = this.bookings.indexOf(booking);
+      console.log(index);
+      console.log(this.bookingsId[index]);
+      if (confirm("Are you sure? Deletion is irreversible.")) {
+        deleteDoc(doc(db, "bookingDetails", this.bookingsId[index]));
+        alert("Delete successfully!");
+        this.$router.push({ name: "HomePage" });
+      } else {
+        return;
+      }
+    },
+    /*
+    editBooking(booking) {
+      const newTime = prompt("Please enter a time ", "e.g. 17:30");
+      if (newTime == null || newTime == "") {
+        alert("Please enter a valid time!");
+      } else {
+        updateDoc(booking, {
+          time: newTime,
+        });
+        alert("Change successfully!");
+        this.$router.push({ name: "HomePage" });
+      }
+    },
+    */
   },
 
   created() {
@@ -60,9 +122,11 @@ export default {
     onSnapshot(q, (querySnapshot) => {
       querySnapshot.forEach((doc) => {
         this.bookings.push(doc.data());
+        this.bookingsId.push(doc.id);
       });
       console.log(
         "bookings",
+        querySnapshot.docs.map((doc) => doc.id),
         querySnapshot.docs.map((doc) => doc.data())
       );
     });
