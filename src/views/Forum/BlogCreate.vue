@@ -54,10 +54,11 @@
 </template>
 
 <script>
-import firebase from 'firebase/app';
-
+import {storage} from '@/firebase/firebaseinit'
+import { ref, uploadBytes } from "firebase/storage";
 
 export default {
+
   data() {
     return {
       title: '',
@@ -70,23 +71,8 @@ export default {
   },
 
   methods: {
-    create () {
-      const blog = {
-        photo: this.img1,
-        title:this.title,
-        venue: this.venue,
-        date:this.date,
-        content:this.content        
-      }
-      firebase.database().ref('Blogs').push(blog)
-      .then((response) => {
-        console.log(response)
-      })
-      .catch(err => {
-        console.log(err)
-      })
-    },
-    click1() {
+
+  click1() {
     this.$refs.input1.click()   
   },
   previewImage(event) {
@@ -96,8 +82,16 @@ export default {
     this.onUpload()
   },
   onUpload(){
+    const imgRef = ref(
+      storage,
+      "blogs/" + "/" + this.imageData
+    );
+    uploadBytes(imgRef, this.file).then((snapshot) => {
+      console.log("Uploaded a blob or file!");
+      console.log(snapshot);
+    });
     this.img1=null;
-    const storageRef=firebase.storage().ref(`${this.imageData.name}`).put(this.imageData);
+    const storageRef=storageRef(`${this.imageData.name}`).put(this.imageData);
     storageRef.on(`state_changed`,snapshot=>{
     this.uploadValue = (snapshot.bytesTransferred/snapshot.totalBytes)*100;
       }, error=>{console.log(error.message)},
