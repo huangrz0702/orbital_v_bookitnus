@@ -54,13 +54,16 @@
 </template>
 
 <script>
-import {storage} from '@/firebase/firebaseinit'
+import {auth, storage} from '@/firebase/firebaseinit'
 import { ref, uploadBytes } from "firebase/storage";
+import { db } from "../../firebase/firebaseinit";
+import { collection, addDoc } from "firebase/firestore";
 
 export default {
 
   data() {
     return {
+      email:'',
       title: '',
       venue: '',
       date: '',
@@ -82,6 +85,14 @@ export default {
     this.onUpload()
   },
   onUpload(){
+    addDoc(collection(db, "blogDetails"), {
+      email: auth.currentUser.email,
+      title: this.title,
+      venue: this.venue,
+      date: this.date,
+      content: this.content,
+      picture: "blogs/"+ this.imageData
+    })
     const imgRef = ref(
       storage,
       "blogs/" + "/" + this.imageData
@@ -102,9 +113,11 @@ export default {
           });
         }      
       );
-  },
+      alert("Publish successfully!");
+    }
   }
 }
+
 
 </script>
 
