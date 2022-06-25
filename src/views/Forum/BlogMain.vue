@@ -24,7 +24,6 @@ export default {
     data() {
         return {
             sampleBlogCards: [
-                { blogTitle: "Blog Card #1", blogCover: "3", blogDate: "June 4 2022" },
                 { blogTitle: "Raffles hall gym is awsome!", blogCover: "1", blogDate: "June 6 2022" },
                 { blogTitle: "Loving RVRC's environment", blogCover: "2", blogDate: "June 14 2022" },
                 { blogTitle: "Sheares Hall function room review", blogCover: "3", blogDate: "June 20 2022" },
