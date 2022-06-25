@@ -108,6 +108,11 @@ const routes = [
       name:"bookHist",
       component: () => import("../views/UserProfile/bookHist.vue"),
     },
+    {
+      path: "/sampleBlogPage",
+      name:"sampleBlogPage",
+      component: () => import("../views/Forum/sample.vue"),
+    },
 
 ];
 

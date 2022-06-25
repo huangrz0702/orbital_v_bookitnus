@@ -4,7 +4,7 @@
     <div class="info">
         <h4>{{ post.blogTitle}}</h4>
         <h6>Posted on: {{ post.blogDate}}</h6>
-        <router-link class="link" to="#"> View The Post</router-link>
+        <router-link class="link" to="/sampleBlogPage"> View The Post</router-link>
     </div>
   </div>
 </template>
