@@ -82,17 +82,8 @@ export default {
     this.uploadValue=0;
     this.img1=null;
     this.imageData = event.target.files[0];
-    this.onUpload()
   },
   onUpload(){
-    addDoc(collection(db, "blogDetails"), {
-      email: auth.currentUser.email,
-      title: this.title,
-      venue: this.venue,
-      date: this.date,
-      content: this.content,
-      picture: "blogs/"+ this.imageData
-    })
     const imgRef = ref(
       storage,
       "blogs/" + "/" + this.imageData
@@ -102,7 +93,7 @@ export default {
       console.log(snapshot);
     });
     this.img1=null;
-    const storageRef=storageRef(`${this.imageData.name}`).put(this.imageData);
+    const storageRef= ref(`${this.imageData.name}`).put(this.imageData);
     storageRef.on(`state_changed`,snapshot=>{
     this.uploadValue = (snapshot.bytesTransferred/snapshot.totalBytes)*100;
       }, error=>{console.log(error.message)},
@@ -113,8 +104,29 @@ export default {
           });
         }      
       );
-      alert("Publish successfully!");
-    }
+    },
+    async publish() {
+      try {
+        await addDoc(collection(db, "blogDetails"), {
+          email: auth.currentUser.email,
+          title: this.title,
+          venue: this.venue,
+          date: this.date,
+          content: this.content,
+          picture: "blogs/"+ this.imageData
+        }).then(() => {
+          alert("Publish successfully!");
+      });
+      } catch (error) {
+        console.log(error);
+        switch (error.code) {
+          default:
+            alert("Please log in first!");
+            this.$router.push({ name: "LoginPage" });
+        }
+        return;
+      } 
+    },
   }
 }
 
