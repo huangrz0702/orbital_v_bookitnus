@@ -4,6 +4,7 @@
       <table class="table" style="text-align: center">
         <thead>
           <tr>
+            <th>Location</th>
             <th>Venue</th>
             <th>Date</th>
             <th>Time</th>
@@ -13,6 +14,10 @@
 
         <tbody>
           <tr v-for="booking in bookings" :key="booking">
+            <td>
+              {{ booking.location }}
+            </td>
+            
             <td>
               {{ booking.venue }}
             </td>
@@ -92,7 +97,7 @@ export default {
       if (confirm("Are you sure? Deletion is irreversible.")) {
         deleteDoc(doc(db, "bookingDetails", this.bookingsId[index]));
         alert("Delete successfully!");
-        this.$router.push({ name: "HomePage" });
+        this.$router.push({ name: "ProfilePage" });
       } else {
         return;
       }

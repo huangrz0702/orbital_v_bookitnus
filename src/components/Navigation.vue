@@ -12,7 +12,7 @@
           <router-link class="link" to="/">Home</router-link>
           <div class="dropdown">
             <button class="dropbtn">
-              FACILITIES
+              FACILITIES BOOKING
               <i class="gg-chevron-double-down"></i>
               <div class="dropdown-content">
                 <router-link class="link" to="/Searchmain"
