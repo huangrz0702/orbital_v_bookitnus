@@ -38,19 +38,30 @@
             </button>
           </div>
 
-          <div class="dropdown">
+          <div v-if="loggedIn" class="dropdown">
             <button class="dropbtn">
               USER
               <i class="gg-chevron-double-down"></i>
               <div class="dropdown-content">
-                <router-link class="link" to="/ProfilePage"
+              <h3> Hello, {{ name }} !</h3>
+              <router-link class="link" to="/ProfilePage"
                   >User Profile</router-link
                 >
+              </div>
+            </button>
+            
+          </div>
+
+          <div v-else class="dropdown">
+            <button class="dropbtn">
+              USER
+              <i class="gg-chevron-double-down"></i>
+              <div class="dropdown-content">
                 <router-link class="link" to="/LoginPage"
                   >Login / Register</router-link
                 >
               </div>
-            </button>
+              </button>
           </div>
         </div>
       </div>
@@ -59,8 +70,36 @@
 </template>
 
 <script>
+
 export default {
   name: "navigationBar",
+
+  mounted() {
+    this.setup();
+  },
+
+  data() {
+    return {
+      loggedIn: false,
+      name: "user",
+    };
+  },
+
+  methods: {
+    setup() {
+        if (localStorage.getItem("displayname")) {
+          // User is signed in.
+          this.loggedIn = true;
+          console.log(localStorage.getItem("displayname"))
+          this.name = localStorage.getItem("displayname").split("@")[0].substring(1);
+          console.log("signed in", this.loggedIn);
+        } else {
+          // No user is signed in.
+          this.loggedIn = false;
+          console.log("signed out", this.loggedIn);
+        }
+    },
+  },
 };
 </script>
 

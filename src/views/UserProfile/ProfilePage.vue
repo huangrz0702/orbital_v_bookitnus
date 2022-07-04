@@ -80,7 +80,7 @@ export default {
   props: {
     name: {
       type: String,
-      default: localStorage.getItem("currentuser"),
+      default: localStorage.getItem("displayname"),
     },
   },
   methods: {
@@ -101,6 +101,7 @@ export default {
       try {
         await signOut(auth);
         localStorage.setItem("currentuser", "");
+        localStorage.setItem("displayname", "");
         alert("You have signed out!");
         this.$router.push({ name: "LoginPage" });
       } catch (error) {
@@ -114,7 +115,7 @@ export default {
     },
     async changename() {
       try {
-        await localStorage.setItem("currentuser", " " + this.profile.name);
+        await localStorage.setItem("displayname", " " + this.profile.name);
         alert("You have successfully changed your name!");
       } catch (error) {
         console.log(error);

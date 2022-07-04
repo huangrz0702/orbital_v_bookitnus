@@ -1,4 +1,6 @@
 <template>
+<link href='https://css.gg/mail.css' rel='stylesheet'>
+<link href='https://css.gg/lock.css' rel='stylesheet'>
   <main class="Container">
     <div>
       <section class="form">
@@ -17,23 +19,23 @@
           </p>
           <h2>Login</h2>
           <div class="input">
+            <i class="gg-mail"></i>
             <input
               type="email"
               placeholder="Email"
               v-model="login_form.email"
               required
             />
-            <svg-icon class="icon" iconClass="envelope-regular"></svg-icon>
           </div>
 
           <div class="input">
+            <i class="gg-lock"></i>
             <input
               type="password"
               placeholder="Password"
               v-model="login_form.password"
               required
             />
-            <svg-icon class="icon" iconClass="lock-alt-solid"></svg-icon>
           </div>
 
           <input class="btn" type="submit" value="Log in" />
@@ -84,6 +86,10 @@ export default {
       this.$router.push({ name: "HomePage" });
       localStorage.setItem(
         "currentuser",
+        JSON.stringify(this.login_form.email)
+      );
+      localStorage.setItem(
+        "displayname",
         JSON.stringify(this.login_form.email)
       );
     },
@@ -167,9 +173,4 @@ p {
   cursor: pointer;
 }
 
-.icon {
-  width: 16px;
-  position: absolute;
-  left: 6px;
-}
 </style>
