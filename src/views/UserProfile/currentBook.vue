@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <section class="form">
-      <h2>My booking history</h2>
+      <h2>My current booking(s)</h2>
       <table class="table" style="text-align: center">
         <thead>
           <tr>

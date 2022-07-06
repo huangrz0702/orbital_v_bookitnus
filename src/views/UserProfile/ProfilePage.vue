@@ -1,6 +1,6 @@
 <template>
   <div class="container-profile">
-    <h1>Greetings, User {{ name.split("@")[0].substring(1) }} !</h1>
+    <h1>Greetings, User {{ name1.slice(1, -1) }} !</h1>
     <h2>My account</h2>
     <p>View and edit your personal info below.</p>
 
@@ -35,25 +35,50 @@
           required
         />
       </div>
+      <br />
+
       <input class="btn" id="changename" type="submit" value="Submit" />
     </form>
 
     <br />
     <hr />
+
+    <form class="changeplace" @submit.prevent="changeplace">
+      <h2>Place Of Residence</h2>
+      <p>Your Current place of Residence: {{ venue1.slice(1, -1) }}</p>
+      <p>Change your Place Of Residence</p>
+      <div class="input">
+        <select required v-model="profile.place">
+          <option value="null" disabled selected>Place of Residence</option>
+          <option value="Raffles Hall">Raffles Hall</option>
+          <option value="RVRC">RVRC</option>
+          <option value="Sheares Hall">Sheares Hall</option>
+          <option value="Tembusu RC">Tembusu RC</option>
+        </select>
+      </div>
+      <br />
+
+      <input class="btn" id="changeplace" type="submit" value="Submit" />
+    </form>
+
+    <br />
+    <hr />
+    <br />
+
     <form class="info" @submit.prevent="checkbooking">
       <div class="input">
         <input
           class="btn"
-          id="bookHist"
+          id="currentbook"
           type="submit"
-          value="My Booking History"
+          value="My Current Booking(s)"
         />
         <br />
         <input
           class="btn"
-          id="forumPosts"
+          id="bookhistory"
           type="submit"
-          value="My Forum Posts"
+          value="My Booking History"
         />
       </div>
     </form>
@@ -66,8 +91,16 @@
 <script>
 import { ref } from "vue";
 import { sendPasswordResetEmail, signOut } from "firebase/auth";
-import { auth } from "../../firebase/firebaseinit.js";
+import { auth, db } from "../../firebase/firebaseinit.js";
 import "firebase/compat/auth";
+import {
+  collection,
+  onSnapshot,
+  query,
+  where,
+  doc,
+  updateDoc,
+} from "firebase/firestore";
 
 export default {
   setup() {
@@ -77,12 +110,45 @@ export default {
     };
   },
 
+  data() {
+    return {
+      currentUser: localStorage.getItem("currentuser"),
+      dataId: [],
+      venue: null,
+      name: null,
+    };
+  },
+
+  created() {
+    console.log(this.currentUser);
+    const q = query(
+      collection(db, "bookit-nus"),
+      where("email", "==", this.currentUser.slice(1, -1))
+    );
+    onSnapshot(q, (querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        this.dataId.push(doc.id);
+        this.name = doc.data().displayName;
+        this.venue = doc.data().placeOfResidence;
+        localStorage.setItem("placeOfResidence", JSON.stringify(this.venue));
+        localStorage.setItem("displayname", JSON.stringify(this.name));
+      });
+      console.log("venue", this.dataId, this.venue);
+    });
+  },
+
   props: {
-    name: {
+    name1: {
       type: String,
       default: localStorage.getItem("displayname"),
     },
+
+    venue1: {
+      type: String,
+      default: localStorage.getItem("placeOfResidence"),
+    },
   },
+
   methods: {
     async changepassword() {
       try {
@@ -115,8 +181,28 @@ export default {
     },
     async changename() {
       try {
-        await localStorage.setItem("displayname", " " + this.profile.name);
+        await updateDoc(doc(db, "bookit-nus", this.dataId[0]), {
+          displayName: this.profile.name,
+        });
         alert("You have successfully changed your name!");
+        this.$router.push({ name: "HomePage" });
+      } catch (error) {
+        console.log(error);
+        switch (error.code) {
+          default:
+            alert("Something went wrong");
+        }
+        return;
+      }
+    },
+
+    async changeplace() {
+      try {
+        await updateDoc(doc(db, "bookit-nus", this.dataId[0]), {
+          placeOfResidence: this.profile.place,
+        });
+        alert("You have successfully changed your place of residence!");
+        this.$router.push({ name: "HomePage" });
       } catch (error) {
         console.log(error);
         switch (error.code) {
@@ -128,7 +214,7 @@ export default {
     },
     async checkbooking() {
       try {
-        this.$router.push({ name: "bookHist" });
+        this.$router.push({ name: "currentBook" });
       } catch (error) {
         console.log(error);
         switch (error.code) {
@@ -144,7 +230,6 @@ export default {
 
 <style scoped>
 .container-profile {
-  height: 75vh;
   padding-left: 5vw;
   padding-right: 5vw;
   padding: 1vh 10vw 1vh 10vw;
@@ -169,7 +254,19 @@ hr {
 }
 
 .input input {
-  width: 30%;
+  width: 35%;
+  border: none;
+  padding: 4px 4px 4px 30px;
+  height: 30px;
+  border-radius: 10px;
+  font-size: 13px;
+  display: block;
+  position: relative;
+  left: 73px;
+}
+
+.input select {
+  width: 35%;
   border: none;
   padding: 4px 4px 4px 30px;
   height: 30px;

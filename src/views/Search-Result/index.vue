@@ -29,6 +29,7 @@ export default {
                 { facName: "RVRC", blogCover: "2", facType: "outdoor sports", facCharge: "no"},
                 { facName: "Sheares", blogCover: "3", facType: "meeting room", facCharge: "no"},
                 { facName: "Tembusu", blogCover: "4", facType: "function room", facCharge: "no" },
+                { facName: "Tembusu", blogCover: "4", facType: "function room", facCharge: "yes" },
             ]
         };
     },

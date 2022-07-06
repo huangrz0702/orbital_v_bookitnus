@@ -43,7 +43,7 @@
               USER
               <i class="gg-chevron-double-down"></i>
               <div class="dropdown-content">
-              <h3> Hello, {{ name }} !</h3>
+              <h3> Hello, {{ name1.slice(1, -1) }} !</h3>
               <router-link class="link" to="/ProfilePage"
                   >User Profile</router-link
                 >
@@ -71,6 +71,16 @@
 
 <script>
 
+import { db } from "../firebase/firebaseinit.js";
+
+
+import {
+  collection,
+  onSnapshot,
+  query,
+  where,
+} from "firebase/firestore";
+
 export default {
   name: "navigationBar",
 
@@ -81,17 +91,41 @@ export default {
   data() {
     return {
       loggedIn: false,
-      name: "user",
+      currentUser: localStorage.getItem("currentuser"),
+      dataId: [],
+      name: null,
     };
+  },
+
+    created() {
+    console.log(this.currentUser);
+    const q = query(
+      collection(db, "bookit-nus"),
+      where("email", "==", this.currentUser.slice(1, -1))
+    );
+    onSnapshot(q, (querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        this.dataId.push(doc.id);
+        this.name = doc.data().displayName;
+        localStorage.setItem("displayname", JSON.stringify(this.name));
+      });
+    });
+  },
+
+  props: {
+    name1: {
+      type: String,
+      default: localStorage.getItem("displayname"),
+    },
   },
 
   methods: {
     setup() {
-        if (localStorage.getItem("displayname")) {
+        if (localStorage.getItem("currentuser")) {
           // User is signed in.
           this.loggedIn = true;
-          console.log(localStorage.getItem("displayname"))
-          this.name = localStorage.getItem("displayname").split("@")[0].substring(1);
+          console.log(localStorage.getItem("currentuser"))
+          this.name = localStorage.getItem("currentuser").slice(1, -1);
           console.log("signed in", this.loggedIn);
         } else {
           // No user is signed in.

@@ -104,9 +104,9 @@ const routes = [
       component: () => import("../views/Search-Result/index.vue"),
     },
     {
-      path: "/bookHist",
-      name:"bookHist",
-      component: () => import("../views/UserProfile/bookHist.vue"),
+      path: "/currentBook",
+      name:"currentBook",
+      component: () => import("../views/UserProfile/currentBook.vue"),
     },
     {
       path: "/sampleBlogPage",

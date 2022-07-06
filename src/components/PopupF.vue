@@ -4,18 +4,11 @@
       <label>Specify location:</label>
       <br />
       <select required v-model="book_form.location">
-        <option value="null" selected disabled>
-          Please select a location
-        </option>
+        <option value="null" selected disabled>Please select a location</option>
         <option value="Raffles Hall">Raffles Hall</option>
         <option value="RVRC">RVRC</option>
-        <option value="Sheares Hall">
-          Sheares Hall
-        </option>
-        <option value="Tembusu RC">
-          Tembusu RC
-        </option>
-
+        <option value="Sheares Hall">Sheares Hall</option>
+        <option value="Tembusu RC">Tembusu RC</option>
       </select>
 
       <label>Specify venue:</label>
@@ -36,7 +29,13 @@
         (you can only book the venue one week in advance)</label
       >
       <br />
-      <input type="date" min="2022-08-07" max="2022-08-31" required v-model="book_form.date" />
+      <input
+        type="date"
+        min="2022-08-07"
+        max="2022-08-31"
+        required
+        v-model="book_form.date"
+      />
       <br />
       <label>Select Time:</label>
       <br />
@@ -71,7 +70,10 @@
 import { ref } from "vue";
 import { auth, db } from "../firebase/firebaseinit";
 // import { doc, setDoc } from "firebase/firestore";
-import { collection, addDoc } from "firebase/firestore";
+import {
+  collection,
+  addDoc,
+} from "firebase/firestore";
 
 export default {
   setup() {

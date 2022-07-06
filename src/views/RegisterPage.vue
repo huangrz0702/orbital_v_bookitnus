@@ -114,10 +114,10 @@ export default {
       await setDoc(doc(db, "bookit-nus", auth.currentUser.uid), {
         email: this.register_form.email,
         displayName: this.register_form.name,
-        placeOfResdience: this.register_form.place,
+        placeOfResidence: this.register_form.place,
       });
 
-      this.$router.push({ name: "HomePage" });
+      this.$router.push({ name: "LoginPage" });
     },
   },
 };

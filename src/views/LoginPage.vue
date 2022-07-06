@@ -88,10 +88,6 @@ export default {
         "currentuser",
         JSON.stringify(this.login_form.email)
       );
-      localStorage.setItem(
-        "displayname",
-        JSON.stringify(this.login_form.email)
-      );
     },
   },
 };

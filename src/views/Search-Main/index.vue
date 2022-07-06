@@ -71,6 +71,13 @@ export default {
           facType: "function room",
           facCharge: "free of charge",
         },
+        {
+          id: 6,
+          facName: "Tembusu RC",
+          blogCover: "4",
+          facType: "function room",
+          facCharge: "paid for use",
+        },
       ],
       str: "",
       type: "",
@@ -134,6 +141,13 @@ export default {
           blogCover: "4",
           facType: "function room",
           facCharge: "free of charge",
+        },
+        {
+          id: 6,
+          facName: "Tembusu RC",
+          blogCover: "4",
+          facType: "function room",
+          facCharge: "paid for use",
         },
       ];
     },
