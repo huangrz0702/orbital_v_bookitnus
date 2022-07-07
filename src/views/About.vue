@@ -1,4 +1,5 @@
 <template>
+  <navigationBar />
   <div class="container" style="text-align: center">
     <section class="form">
       <h2>
@@ -38,8 +39,11 @@
 
 
 <script>
+import navigationBar from '../components/Navigation.vue'
+
 export default {
   name: "AboutPage",
+  Components: { navigationBar },
 };
 </script>
 

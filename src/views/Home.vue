@@ -1,4 +1,5 @@
 <template>
+<navigationBar/>
 <div class = "message-wrapper">
     <div class = "message-content">
       <h1>  Welcome to BOOKit@NUS</h1>
@@ -135,9 +136,11 @@
 </template>
 
 <script>
+import navigationBar from '../components/Navigation.vue'
+
   export default {
       name: "HomePage",
-      Components: {},
+      Components: {navigationBar},
   };
 </script>
 

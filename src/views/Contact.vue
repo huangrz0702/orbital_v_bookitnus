@@ -1,4 +1,5 @@
 <template>
+  <navigationBar />
   <div class="container">
     <section class="form">
       <table style="text-align: center">
@@ -83,8 +84,11 @@
 </template>
 
 <script>
+import navigationBar from "../components/Navigation.vue";
+
 export default {
   name: "ContactPage",
+  Components: { navigationBar },
 };
 </script>
 

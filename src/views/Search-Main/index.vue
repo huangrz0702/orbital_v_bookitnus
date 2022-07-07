@@ -1,4 +1,5 @@
 <template>
+<navigationBar />
   <div class="container">
     <div class="left">
       <FiltersF
@@ -25,6 +26,8 @@
 import FacCard from "../../components/FacCard.vue";
 import FiltersF from "../../components/FiltersF.vue";
 import Filters2F from "../../components/Filters2F.vue";
+import navigationBar from '../../components/Navigation.vue'
+
 
 export default {
   name: "SearchMainPage",
@@ -32,6 +35,7 @@ export default {
     FacCard,
     FiltersF,
     Filters2F,
+    navigationBar
   },
   data() {
     return {
