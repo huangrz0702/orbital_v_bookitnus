@@ -99,6 +99,15 @@ const routes = [
       },
     },
     {
+      path: "/indivBlogPage",
+      name:"indivBlogPage",
+      component: () => import("../views/Forum/indivBlogPage.vue"),
+      props: true,
+      meta: {
+        title: 'Indiv Blog'
+      },
+    },
+    {
       path: "/AllFac",
       name:"AllFac",
       component: () => import("../views/Search-Result/index.vue"),

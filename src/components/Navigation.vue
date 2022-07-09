@@ -38,12 +38,12 @@
             </button>
           </div>
 
-          <div v-if="loggedIn" class="dropdown">
+          <div class="dropdown">
             <button class="dropbtn">
               USER
               <i class="gg-chevron-double-down"></i>
               <div class="dropdown-content">
-              <h3> Hello, {{ name1.slice(1, -1) }} !</h3>
+
               <router-link class="link" to="/ProfilePage"
                   >User Profile</router-link
                 >
@@ -52,9 +52,9 @@
             
           </div>
 
-          <div v-else class="dropdown">
+          <div class="dropdown">
             <button class="dropbtn">
-              USER
+              Login / Register
               <i class="gg-chevron-double-down"></i>
               <div class="dropdown-content">
                 <router-link class="link" to="/LoginPage"
@@ -71,70 +71,9 @@
 
 <script>
 
-import { db } from "../firebase/firebaseinit.js";
-
-
-import {
-  collection,
-  onSnapshot,
-  query,
-  where,
-} from "firebase/firestore";
-
-export default {
-  name: "navigationBar",
-
-  mounted() {
-    this.setup();
-  },
-
-  data() {
-    return {
-      loggedIn: false,
-      currentUser: localStorage.getItem("currentuser"),
-      dataId: [],
-      name: null,
-    };
-  },
-
-    created() {
-    console.log(this.currentUser);
-    const q = query(
-      collection(db, "bookit-nus"),
-      where("email", "==", this.currentUser.slice(1, -1))
-    );
-    onSnapshot(q, (querySnapshot) => {
-      querySnapshot.forEach((doc) => {
-        this.dataId.push(doc.id);
-        this.name = doc.data().displayName;
-        localStorage.setItem("displayname", JSON.stringify(this.name));
-      });
-    });
-  },
-
-  props: {
-    name1: {
-      type: String,
-      default: localStorage.getItem("displayname"),
-    },
-  },
-
-  methods: {
-    setup() {
-        if (localStorage.getItem("currentuser")) {
-          // User is signed in.
-          this.loggedIn = true;
-          console.log(localStorage.getItem("currentuser"))
-          this.name = localStorage.getItem("currentuser").slice(1, -1);
-          console.log("signed in", this.loggedIn);
-        } else {
-          // No user is signed in.
-          this.loggedIn = false;
-          console.log("signed out", this.loggedIn);
-        }
-    },
-  },
-};
+  export default {
+    name: "navigationBar",
+  }
 </script>
 
 

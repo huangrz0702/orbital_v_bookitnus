@@ -7,6 +7,7 @@
             <div class="blog-cards">
                 <BlogCard :post="post" v-for="(post, index) in sampleBlogCards" :key="index" />
             </div>
+            <div class="read-more" @click="$router.push({ name : 'indivBlogPage', params:{ id : '1xF5JKENbVDIZSTvCe14'}})">Read More</div>
         </div>
     </div>
 </div>
