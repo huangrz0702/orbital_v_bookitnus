@@ -8,7 +8,7 @@
       <form class="register" @submit.prevent="register">
         <p class="login">
           Already have an account?
-          <router-link class="router-link" to="/LoginPage">Login</router-link>
+          <router-link class="router-link" to="/">Login</router-link>
         </p>
 
         <h2>Register</h2>

@@ -9,7 +9,7 @@
           >
         </div>
         <div class="nav-links">
-          <router-link class="link" to="/">Home</router-link>
+          <router-link class="link" to="/Home">Home</router-link>
           <div class="dropdown">
             <button class="dropbtn">
               FACILITIES BOOKING
@@ -57,7 +57,7 @@
               Login / Register
               <i class="gg-chevron-double-down"></i>
               <div class="dropdown-content">
-                <router-link class="link" to="/LoginPage"
+                <router-link class="link" to="/"
                   >Login / Register</router-link
                 >
               </div>

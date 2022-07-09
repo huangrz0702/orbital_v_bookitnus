@@ -2,9 +2,8 @@
 <template>
   <div class="app-wrapper">
     <div class="app">
-      <navigationBar/>
       <router-view/>
-      <FooterVue/>
+      <footerVue/>
     </div>
   </div>
 </template>
@@ -12,8 +11,8 @@
 <script>
 //import HomePage from './views/Home.vue'
 //import LayoutPage from './layout/index.vue'
-import navigationBar from './components/Navigation.vue'
-import FooterVue from './components/Footer.vue'
+//import navigationBar from './components/Navigation.vue'
+import footerVue from './components/Footer.vue'
 //import SearchMainPage from './views/Search-Main/index.vue'
 //import LoginPage from './views/LoginPage.vue'
 //import RegisterPage from './views/RegisterPage.vue'
@@ -23,8 +22,8 @@ export default {
   name: 'App',
   components: {
     //LayoutPage,
-    navigationBar,
-    FooterVue,
+    //navigationBar,
+    footerVue,
     //HomePage,
     //LoginPage,
     //RegisterPage,

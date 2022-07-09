@@ -1,4 +1,5 @@
 <template>
+<navigationBar/>
   <div class="container">
     <section class="form">
       <h2>My current booking(s)</h2>
@@ -56,6 +57,7 @@
 import { ref } from "vue";
 import { db } from "../../firebase/firebaseinit";
 import Popup from "../../components/PopupF.vue";
+import navigationBar from '../../components/Navigation.vue'
 
 import {
   onSnapshot,
@@ -68,6 +70,7 @@ import {
 } from "firebase/firestore";
 
 export default {
+  Components: {navigationBar},
   setup() {
     const popupTriggers = ref({
       buttonTrigger: false,

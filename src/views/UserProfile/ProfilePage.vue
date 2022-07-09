@@ -1,4 +1,5 @@
 <template>
+<navigationBar/>
   <div class="container-profile">
     <h1>Greetings, User {{ name1.slice(1, -1) }} !</h1>
     <h2>My account</h2>
@@ -45,7 +46,7 @@
 
     <form class="changeplace" @submit.prevent="changeplace">
       <h2>Place Of Residence</h2>
-      <p>Your Current place of Residence: {{ venue1.slice(1, -1) }}</p>
+      <p>Your current Place Of Residence: {{ venue1.slice(1, -1) }}</p>
       <p>Change your Place Of Residence</p>
       <div class="input">
         <select required v-model="profile.place">
@@ -101,8 +102,11 @@ import {
   doc,
   updateDoc,
 } from "firebase/firestore";
+import navigationBar from '../../components/Navigation.vue'
+
 
 export default {
+  Components: {navigationBar},
   setup() {
     const profile = ref({});
     return {

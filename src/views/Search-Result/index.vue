@@ -1,39 +1,74 @@
 <template>
-<div class="facmain">
-
+  <navigationBar />
+  <div class="facmain">
     <div class="fac-card-wrap">
-        <div class="container">
-            <h3>All Facilities</h3>
-            <div class="fac-cards">
-                <FacCard :post="post" v-for="(post, index) in sampleFacCards" :key="index" />
-            </div>
+      <div class="container">
+        <h3>All Facilities</h3>
+        <div class="fac-cards">
+          <FacCard
+            :post="post"
+            v-for="(post, index) in sampleFacCards"
+            :key="index"
+          />
         </div>
+      </div>
     </div>
-</div>
-
-
+  </div>
 </template>
 
 <script>
 import FacCard from "../../components/FacCard.vue";
+import navigationBar from "../../components/Navigation.vue";
+
 export default {
-    name: 'AllFacPage',
-    Component: {
-        FacCard
-    },
-    data() {
-        return {
-            sampleFacCards: [
-                { facName: "Raffles", blogCover: "1", facType: "indoor sports", facCharge: "no"},
-                { facName: "RVRC", blogCover: "2", facType: "outdoor sports", facCharge: "yes"},
-                { facName: "RVRC", blogCover: "2", facType: "outdoor sports", facCharge: "no"},
-                { facName: "Sheares", blogCover: "3", facType: "meeting room", facCharge: "no"},
-                { facName: "Tembusu", blogCover: "4", facType: "function room", facCharge: "no" },
-                { facName: "Tembusu", blogCover: "4", facType: "function room", facCharge: "yes" },
-            ]
-        };
-    },
-}
+  name: "AllFacPage",
+  Component: {
+    FacCard,
+    navigationBar,
+  },
+  data() {
+    return {
+      sampleFacCards: [
+        {
+          facName: "Raffles",
+          blogCover: "1",
+          facType: "indoor sports",
+          facCharge: "no",
+        },
+        {
+          facName: "RVRC",
+          blogCover: "2",
+          facType: "outdoor sports",
+          facCharge: "yes",
+        },
+        {
+          facName: "RVRC",
+          blogCover: "2",
+          facType: "outdoor sports",
+          facCharge: "no",
+        },
+        {
+          facName: "Sheares",
+          blogCover: "3",
+          facType: "meeting room",
+          facCharge: "no",
+        },
+        {
+          facName: "Tembusu",
+          blogCover: "4",
+          facType: "function room",
+          facCharge: "no",
+        },
+        {
+          facName: "Tembusu",
+          blogCover: "4",
+          facType: "function room",
+          facCharge: "yes",
+        },
+      ],
+    };
+  },
+};
 </script>
 
 <style lang="scss" scoped>
@@ -46,21 +81,19 @@ export default {
   }
   .container {
     .fac-cards {
-        display: grid;
-        gap: 32px;
-        grid-template-columns: 1fr;
-        @media (min-width: 500px) {
+      display: grid;
+      gap: 32px;
+      grid-template-columns: 1fr;
+      @media (min-width: 500px) {
         grid-template-columns: repeat(2, 1fr);
-        }
-        @media (min-width: 900px) {
+      }
+      @media (min-width: 900px) {
         grid-template-columns: repeat(3, 1fr);
-        }
-        @media (min-width: 1200px) {
+      }
+      @media (min-width: 1200px) {
         grid-template-columns: repeat(4, 1fr);
-        }
+      }
     }
-
   }
-
 }
 </style>

@@ -5,7 +5,7 @@ import HomePage from "../views/Home.vue";
 
 const routes = [
     {
-      path: "/",
+      path: "/Home",
       name:"HomePage",
       component: HomePage,
       meta: {
@@ -31,7 +31,7 @@ const routes = [
       },
     },
     {
-      path: "/LoginPage",
+      path: "/",
       name:"LoginPage",
       component: () => import("../views/LoginPage.vue"),
       meta: {
