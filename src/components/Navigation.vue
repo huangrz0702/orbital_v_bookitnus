@@ -38,11 +38,12 @@
             </button>
           </div>
 
-          <div class="dropdown">
+          <div v-if="loggedIn" class="dropdown">
             <button class="dropbtn">
               USER
               <i class="gg-chevron-double-down"></i>
               <div class="dropdown-content">
+              <h3> Hello, {{ name }} !</h3>
 
               <router-link class="link" to="/ProfilePage"
                   >User Profile</router-link
@@ -52,7 +53,7 @@
             
           </div>
 
-          <div class="dropdown">
+          <div v-else class="dropdown">
             <button class="dropbtn">
               Login / Register
               <i class="gg-chevron-double-down"></i>
@@ -133,9 +134,7 @@ export default {
     },
   },
 };
-  export default {
-    name: "navigationBar",
-  }
+
 </script>
 
 
