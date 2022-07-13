@@ -98,7 +98,6 @@ export default {
   },
 
     created() {
-    console.log(this.currentUser);
     const q = query(
       collection(db, "bookit-nus"),
       where("email", "==", this.currentUser.slice(1, -1))
@@ -124,7 +123,6 @@ export default {
         if (localStorage.getItem("currentuser")) {
           // User is signed in.
           this.loggedIn = true;
-          console.log(localStorage.getItem("currentuser"))
           this.name = localStorage.getItem("currentuser").slice(1, -1);
           console.log("signed in", this.loggedIn);
         } else {

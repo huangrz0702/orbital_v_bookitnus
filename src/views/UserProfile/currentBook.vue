@@ -122,7 +122,6 @@ export default {
   },
 
   created() {
-    console.log(this.currentUser);
     const q = query(
       collection(db, "bookingDetails"),
       where("email", "==", this.currentUser.slice(1, -1))

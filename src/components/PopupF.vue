@@ -75,7 +75,15 @@
 import { ref } from "vue";
 import { auth, db } from "../firebase/firebaseinit";
 // import { doc, setDoc } from "firebase/firestore";
-import { collection, addDoc } from "firebase/firestore";
+import {
+  collection,
+  addDoc,
+  query,
+  where,
+  //onSnapshot,
+  //doc,
+  getDocs,
+} from "firebase/firestore";
 
 export default {
   setup() {
@@ -89,24 +97,75 @@ export default {
   methods: {
     async book() {
       try {
-        console.log(this.book_form.location);
-        console.log(localStorage.getItem("placeOfResidence"));
-        console.log(this.book_form.venue);
-
-        if (this.book_form.location== localStorage.getItem("placeOfResidence").slice(1, -1)) {
-          await addDoc(collection(db, "bookingDetails"), {
-            email: auth.currentUser.email,
-            location: this.book_form.location,
-            venue: this.book_form.venue,
-            date: this.book_form.date,
-            time: this.book_form.time,
-          }).then(() => {
-            if (this.book_form.venue == "tennis court") {
-              alert("Please contact the management committee for fee payment!")
-            }
-            alert("Book successfully!");
+        if (
+          this.book_form.location ==
+          localStorage.getItem("placeOfResidence").slice(1, -1)
+        ) {
+          // check for double booking at a time by the person
+          const q1 = query(
+            collection(db, "bookingDetails"),
+            where(
+              "email",
+              "==",
+              localStorage.getItem("currentuser").slice(1, -1)
+            ),
+            where("date", "==", this.book_form.date),
+            where("time", "==", this.book_form.time)
+          );
+          const querySnapshot1 = await getDocs(q1);
+          var length1 = 0;
+          querySnapshot1.forEach((doc) => {
+            console.log(doc.id, " => ", doc.data());
+            length1 += 1;
           });
-          this.$router.push({ name: "ProfilePage" });
+          console.log("length1 " + length1);
+
+          // check for venue availability
+          const q2 = query(
+            collection(db, "bookingDetails"),
+            where("venue", "==", this.book_form.venue),
+            where("location", "==", this.book_form.location),
+            where("date", "==", this.book_form.date),
+            where("time", "==", this.book_form.time)
+          );
+          const querySnapshot2 = await getDocs(q2);
+          var length2 = 0;
+          querySnapshot2.forEach((doc) => {
+            console.log(doc.id, " => ", doc.data());
+            length2 += 1;
+          });
+          console.log("length2 " + length2);
+
+          if (length1 != 0) {
+            alert(
+              "Book unsuccessfully! You can only book one facility at a time!"
+            );
+            
+          } else if (length2 != 0) {
+            alert(
+              "Book unsuccessfully! The venue has already been booked at that time!"
+            );
+          
+          } else {
+            await addDoc(collection(db, "bookingDetails"), {
+              email: auth.currentUser.email,
+              location: this.book_form.location,
+              venue: this.book_form.venue,
+              date: this.book_form.date,
+              time: this.book_form.time,
+            }).then(() => {
+              if (
+                this.book_form.venue == "tennis court" ||
+                this.book_form.venue == "function/multi-purpose room"
+              ) {
+                alert(
+                  "Please contact the management committee for fee payment!"
+                );
+              }
+              alert("Book successfully!");
+            });
+            this.$router.push({ name: "ProfilePage" });
+          }
         } else {
           alert(
             "Book unsuccessfully! You have to select the location that is your place of residence. Or else, please contact your selected location, extra charge may be incurred."
