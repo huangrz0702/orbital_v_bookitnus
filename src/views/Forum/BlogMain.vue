@@ -1,4 +1,5 @@
 <template>
+ <navigationBar />
 <div class="blogmain">
 
     <div class="blog-card-wrap">
@@ -16,11 +17,13 @@
 </template>
 
 <script>
+import navigationBar from '../../components/Navigation.vue';
 import BlogCard from "../../components/BlogCard.vue";
 export default {
     name: 'BlogMainPage',
     Component: {
-        BlogCard
+        BlogCard,
+        navigationBar
     },
     data() {
         return {

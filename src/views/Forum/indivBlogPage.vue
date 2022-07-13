@@ -1,4 +1,5 @@
 <template>
+  <navigationBar />
   <div class="container">
     <section class="form">
       <h2>POSTS</h2>
@@ -41,9 +42,12 @@
 
 <script>
 import getPost from "@/views/Forum/getPost";
-
+import navigationBar from '../../components/Navigation.vue';
 import { useRoute} from "vue-router";
 export default {
+  Component: {
+    navigationBar
+  },
   props: ["id"],
   setup() {
     const route = useRoute();

@@ -1,4 +1,5 @@
 <template>
+  <navigationBar />
   <div class="container">
     <section class="form">
       <h2>ALL POSTS</h2>
@@ -25,7 +26,7 @@
 <script>
 //import { ref } from "vue";
 import { db } from "../../firebase/firebaseinit";
-
+import navigationBar from '../../components/Navigation.vue';
 //import { computed } from "vue";
 import {
   onSnapshot,
@@ -38,6 +39,9 @@ import {
 } from "firebase/firestore";
 
 export default {
+  Component: {
+    navigationBar
+  },
 
   data() {
     return {
@@ -54,7 +58,6 @@ export default {
         collection(db, "blogDetails"),
         where(blog.id == index));
         return {q}
-
     }
   },
 
