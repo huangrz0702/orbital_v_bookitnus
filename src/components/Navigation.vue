@@ -133,9 +133,7 @@ export default {
     },
   },
 };
-  export default {
-    name: "navigationBar",
-  }
+
 </script>
 
 
