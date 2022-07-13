@@ -3,11 +3,11 @@
 
     <div class="blog-card-wrap">
         <div class="container">
-            <h3>View Blogs & Reviews</h3>
+            <h3>Recommended Blogs</h3>
             <div class="blog-cards">
                 <BlogCard :post="post" v-for="(post, index) in sampleBlogCards" :key="index" />
             </div>
-            <div class="read-more" @click="$router.push({ name : 'indivBlogPage', params:{ id : '1xF5JKENbVDIZSTvCe14'}})">Read More</div>
+            <router-link class="link" to="/blogPreviews">Read More Posts</router-link>
         </div>
     </div>
 </div>

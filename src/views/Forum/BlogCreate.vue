@@ -1,4 +1,5 @@
 <template>
+  <navigationBar />
   <form class="blog" @submit.prevent="publish">
     <div class="page">
       <div class="container-header">
@@ -54,12 +55,16 @@
 </template>
 
 <script>
+import navigationBar from '../../components/Navigation.vue';
 import {auth, storage} from '@/firebase/firebaseinit'
 import { ref, uploadBytes } from "firebase/storage";
 import { db } from "../../firebase/firebaseinit";
 import { collection, addDoc } from "firebase/firestore";
 
 export default {
+  Component: {
+    navigationBar
+  },
 
   data() {
     return {
