@@ -3,10 +3,11 @@
 
     <div class="blog-card-wrap">
         <div class="container">
-            <h3>View Blogs & Reviews</h3>
+            <h3>Recommended Blogs</h3>
             <div class="blog-cards">
                 <BlogCard :post="post" v-for="(post, index) in sampleBlogCards" :key="index" />
             </div>
+            <router-link class="link" to="/blogPreviews">Read More Posts</router-link>
         </div>
     </div>
 </div>

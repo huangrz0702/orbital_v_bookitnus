@@ -1,4 +1,5 @@
 <template>
+  <navigationBar />
   <form class="blog" @submit.prevent="publish">
     <div class="page">
       <div class="container-header">
@@ -54,16 +55,20 @@
 </template>
 
 <script>
+import navigationBar from '../../components/Navigation.vue';
 import {auth, storage} from '@/firebase/firebaseinit'
 import { ref, uploadBytes } from "firebase/storage";
 import { db } from "../../firebase/firebaseinit";
 import { collection, addDoc } from "firebase/firestore";
 
 export default {
+  Component: {
+    navigationBar
+  },
 
   data() {
     return {
-      email:'',
+      email:auth.currentUser.email,
       title: '',
       venue: '',
       date: '',
@@ -82,17 +87,14 @@ export default {
     this.uploadValue=0;
     this.img1=null;
     this.imageData = event.target.files[0];
+    this.onUpload();
   },
   onUpload(){
     const imgRef = ref(
       storage,
-      "blogs/" + "/" + this.imageData
+      "blogs/" + auth.currentUser.email + this.imageData
     );
-    uploadBytes(imgRef, this.file).then((snapshot) => {
-      console.log("Uploaded a blob or file!");
-      console.log(snapshot);
-    });
-    this.img1=null;
+    this.img1=this.imageData;
     const storageRef= ref(`${this.imageData.name}`).put(this.imageData);
     storageRef.on(`state_changed`,snapshot=>{
     this.uploadValue = (snapshot.bytesTransferred/snapshot.totalBytes)*100;
@@ -104,6 +106,10 @@ export default {
           });
         }      
       );
+    uploadBytes(imgRef, this.file).then((snapshot) => {
+      console.log("Uploaded a blob or file!");
+      console.log(snapshot);
+    });
     },
     async publish() {
       try {
@@ -113,7 +119,7 @@ export default {
           venue: this.venue,
           date: this.date,
           content: this.content,
-          picture: "blogs/"+ this.imageData
+          picture: "blogs/" + auth.currentUser.email + this.imageData
         }).then(() => {
           alert("Publish successfully!");
       });
