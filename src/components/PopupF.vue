@@ -22,6 +22,8 @@
         </option>
         <option value="meeting room">meeting room</option>
         <option value="game room">game room</option>
+        <option value="basketball court">basketball court</option>
+        <option value="tennis court">tennis court</option>
       </select>
 
       <label
@@ -37,7 +39,10 @@
         v-model="book_form.date"
       />
       <br />
-      <label>Select Time:</label>
+      <label
+        >Select Time:<br />
+        (each session has a duration of one hour)
+      </label>
       <br />
       <select required v-model="book_form.time">
         <option value="null" selected disabled>Please select a time</option>
@@ -70,10 +75,7 @@
 import { ref } from "vue";
 import { auth, db } from "../firebase/firebaseinit";
 // import { doc, setDoc } from "firebase/firestore";
-import {
-  collection,
-  addDoc,
-} from "firebase/firestore";
+import { collection, addDoc } from "firebase/firestore";
 
 export default {
   setup() {
@@ -87,15 +89,30 @@ export default {
   methods: {
     async book() {
       try {
-        await addDoc(collection(db, "bookingDetails"), {
-          email: auth.currentUser.email,
-          location: this.book_form.location,
-          venue: this.book_form.venue,
-          date: this.book_form.date,
-          time: this.book_form.time,
-        }).then(() => {
-          alert("Book successfully!");
-        });
+        console.log(this.book_form.location);
+        console.log(localStorage.getItem("placeOfResidence"));
+        console.log(this.book_form.venue);
+
+        if (this.book_form.location== localStorage.getItem("placeOfResidence").slice(1, -1)) {
+          await addDoc(collection(db, "bookingDetails"), {
+            email: auth.currentUser.email,
+            location: this.book_form.location,
+            venue: this.book_form.venue,
+            date: this.book_form.date,
+            time: this.book_form.time,
+          }).then(() => {
+            if (this.book_form.venue == "tennis court") {
+              alert("Please contact the management committee for fee payment!")
+            }
+            alert("Book successfully!");
+          });
+          this.$router.push({ name: "ProfilePage" });
+        } else {
+          alert(
+            "Book unsuccessfully! You have to select the location that is your place of residence. Or else, please contact your selected location, extra charge may be incurred."
+          );
+          this.$router.push({ name: "ContactPage" });
+        }
       } catch (error) {
         console.log(error);
         switch (error.code) {
@@ -105,7 +122,6 @@ export default {
         }
         return;
       }
-      this.$router.push({ name: "ProfilePage" });
     },
   },
 
