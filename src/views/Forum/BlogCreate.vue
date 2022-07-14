@@ -59,7 +59,7 @@ import navigationBar from '../../components/Navigation.vue';
 import {auth, storage} from '@/firebase/firebaseinit'
 import { ref, uploadBytes } from "firebase/storage";
 import { db } from "../../firebase/firebaseinit";
-import { collection, addDoc } from "firebase/firestore";
+import { collection, addDoc, doc, setDoc } from "firebase/firestore";
 
 export default {
   Component: {
@@ -113,16 +113,23 @@ export default {
     },
     async publish() {
       try {
-        await addDoc(collection(db, "blogDetails"), {
+        const res = await addDoc(collection(db, "blogDetails"), {
           email: auth.currentUser.email,
           title: this.title,
           venue: this.venue,
           date: this.date,
           content: this.content,
           picture: "blogs/" + auth.currentUser.email + this.imageData
-        }).then(() => {
+        })
+        await setDoc(
+          doc(db, "users/" + auth.currentUser.email + "/blogDetails", res.id),
+          {
+            id: res.id,
+          }
+        ).then(() => {
           alert("Publish successfully!");
       });
+        this.$router.push({ name: "indivBlogPage", params: { id: res.id } });
       } catch (error) {
         console.log(error);
         switch (error.code) {

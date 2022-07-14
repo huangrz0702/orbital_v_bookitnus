@@ -41,20 +41,34 @@
 </template>
 
 <script>
-import getPost from "@/views/Forum/getPost";
+
 import navigationBar from '../../components/Navigation.vue';
-import { useRoute} from "vue-router";
+import { ref as Ref } from "vue";
+import { db } from "../../firebase/firebaseinit";
+import { doc, getDoc } from "firebase/firestore";
+
 export default {
   Component: {
     navigationBar
   },
   props: ["id"],
-  setup() {
-    const route = useRoute();
-    const { error, blog, load } = getPost(route.params.id);
+  
+  setup(props) {
+    const blog = Ref('')
+    const load = async () => {
+      try {
+        const res = await getDoc(doc(db, "blogDetails", props.id));
+        blog.value = res.data();
+        // console.log(res.data().coverPhoto)
+      } catch (err) {
+        alert(err.message);
+      }
+    };
+
     load();
-    return { error, blog};
-  },
+    return {blog, load}
+  }
+
 };
 </script>
 
