@@ -19,7 +19,8 @@
     "vue-ionicons": "^3.0.5",
     "vue-router": "^4.0.15",
     "vue2-editor": "^2.10.3",
-    "vue3-quill": "^0.2.6"
+    "vue3-quill": "^0.2.6",
+    "vueperslides": "^3.4.2"
   },
   "devDependencies": {
     "@babel/core": "^7.12.16",
