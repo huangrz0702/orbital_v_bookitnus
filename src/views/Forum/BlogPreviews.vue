@@ -2,20 +2,39 @@
   <navigationBar />
   <div class="container">
     <section class="form">
-      <h2>ALL POSTS</h2>
+
       <table class="table" style="text-align: left">
         <thead>
           <tr>
-            <th>Title</th>
+            <th>ALL POSTS</th>
+
           </tr>
         </thead>
 
         <tbody>
           <tr v-for="blog in blogs" :key="blog">
             <td>
-              {{ blog.title }}
-            <router-link :to="{ name: 'indivBlogPage', params: { id: blog.id } }">Read More</router-link>
+                <div class = "title">
+                   Title:  {{ blog.title }}                  
+                </div>
+                <div class = "body">
+                    <div class = "auth">
+                        <p>By user: {{blog.email}}</p>
+                    </div>
+                    <div class = "date">
+                        <p>Posted on: </p> {{ blog.date }}                    
+                    </div>
+                    <div class = "venue">
+                        <p>Place visited:</p>{{ blog.venue }}                    
+                    </div>
+                    <div class = "content">
+                        <p>Content :</p> 
+                        {{ blog.content }}          
+                    </div>                    
+                </div>
+
             </td>
+
           </tr>
         </tbody>
       </table>
@@ -32,7 +51,7 @@ import {
   onSnapshot,
   collection,
   query,
-  where,
+  //where,
   //doc,
   //deleteDoc,
   //updateDoc,
@@ -52,13 +71,6 @@ export default {
   },
 
   methods: {
-    viewDetails (blog) {
-        const index = this.blogs.indexOf(blog)
-        const q = query(
-        collection(db, "blogDetails"),
-        where(blog.id == index));
-        return {q}
-    }
   },
 
   created() {
@@ -85,7 +97,7 @@ export default {
 <style scoped>
 .container {
   padding: 10vh;
-  height: 60%;
+  height: 80%;
   width: 100%;
   display: flex;
   background-size: 100% 100%;
@@ -100,13 +112,13 @@ td {
 }
 
 th {
-  height: 70px;
+  height: 60px;
   background-color: rgb(121, 145, 223);
   color: white;
 }
 
 td {
-  height: 35px;
+  height: 300px;
 }
 
 tr:nth-child(even) {
@@ -114,16 +126,7 @@ tr:nth-child(even) {
 }
 
 tr:hover {
-  background-color: rgb(197, 162, 65);
-}
-
-.btn {
-  width: 50%;
-  padding: 10px;
-  border: 0ch;
-  border-radius: 30px;
-  cursor: pointer;
-  color: black(237, 209, 96, 0.669);
+  background-color: rgb(211, 184, 126);
 }
 
 .form {
@@ -131,11 +134,42 @@ tr:hover {
   margin: 20px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content:center;
   text-align: justify;
   height: auto;
   width: 100%;
   background: rgba(255, 255, 255, 0.8);
   border-radius: 30px;
 }
+
+.title {
+    margin-top: -20px;
+    font-size: 25px;
+    color: rgb(79, 107, 174);
+    font-family: "Times New Roman", Times, serif;
+    white-space: nowrap;
+    line-height: 2.0;
+    
+
+}
+.auth, .venue, .date {
+
+    font-size: 15px;
+    color: rgb(83, 59, 41);
+}
+.content {
+
+    font-size: 18px;
+    color: rgb(83, 59, 41);
+
+}
+
+p {
+    line-height: 2.0;
+    font-size: 15px;
+    color:black;
+    font-family: "Lucida Console", "Courier New", monospace;
+    
+}
+
 </style>
