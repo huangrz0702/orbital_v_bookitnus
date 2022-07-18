@@ -43,10 +43,6 @@
         <textarea required v-model="content" />
       </div>
 
-      <div class="blog-preview">
-        <router-link class="router-button" to="#">Post Preview</router-link>
-      </div>
-
       <div class="blog-actions">
         <button class="btn" type="submit" @click = "publish">Publish Blog</button>
       </div>
@@ -119,7 +115,6 @@ export default {
           venue: this.venue,
           date: this.date,
           content: this.content,
-          picture: "blogs/" + auth.currentUser.email + this.imageData
         })
         await setDoc(
           doc(db, "users/" + auth.currentUser.email + "/blogDetails", res.id),

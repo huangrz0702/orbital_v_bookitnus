@@ -117,6 +117,15 @@ const routes = [
       },
     },
     {
+      path: "/myBlogs",
+      name:"myBlogs",
+      component: () => import("../views/UserProfile/myBlogs.vue"),
+      props: true,
+      meta: {
+        title: 'My Blogs'
+      },
+    },
+    {
       path: "/AllFac",
       name:"AllFac",
       component: () => import("../views/Search-Result/index.vue"),

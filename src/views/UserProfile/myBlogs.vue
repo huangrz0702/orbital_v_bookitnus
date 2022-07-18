@@ -6,20 +6,18 @@
       <table class="table" style="text-align: left">
         <thead>
           <tr>
-            <th>Your Post</th>
+            <th>ALL POSTS</th>
 
           </tr>
         </thead>
 
         <tbody>
+          <tr v-for="blog in blogs" :key="blog">
             <td>
                 <div class = "title">
                    Title:  {{ blog.title }}                  
                 </div>
                 <div class = "body">
-                    <div class = "auth">
-                        <p>By user: {{blog.email}}</p>
-                    </div>
                     <div class = "date">
                         <p>Posted on: </p> {{ blog.date }}                    
                     </div>
@@ -31,9 +29,11 @@
                         {{ blog.content }}          
                     </div>                    
                 </div>
+                <button @click = "deleteBlog(blog)"> Delete Blog</button>
 
             </td>
 
+          </tr>
         </tbody>
       </table>
     </section>
@@ -41,80 +41,79 @@
 </template>
 
 <script>
-
-import navigationBar from '../../components/Navigation.vue';
-import { ref as Ref } from "vue";
+//import { ref } from "vue";
 import { db } from "../../firebase/firebaseinit";
-import { doc, getDoc } from "firebase/firestore";
+import navigationBar from '../../components/Navigation.vue';
+//import { computed } from "vue";
+import {
+  onSnapshot,
+  collection,
+  query,
+  where,
+  doc,
+  deleteDoc,
+  //updateDoc,
+} from "firebase/firestore";
 
 export default {
   Component: {
     navigationBar
   },
-  props: ["id"],
-  
-  setup(props) {
-    const blog = Ref('')
-    const load = async () => {
-      try {
-        const res = await getDoc(doc(db, "blogDetails", props.id));
-        blog.value = res.data();
-        // console.log(res.data().coverPhoto)
-      } catch (err) {
-        alert(err.message);
-      }
+
+  data() {
+    return {
+      currentUser: localStorage.getItem("currentuser"),
+      blogs: [],
+      blogId: [],
     };
+  },
 
-    load();
-    return {blog, load}
-  }
+  methods: {
 
+    deleteBlog(blog) {
+      const index = this.blogs.indexOf(blog);
+      console.log(index);
+      console.log(this.blogId[index]);
+      if (confirm("Are you sure? Deletion is irreversible.")) {
+        deleteDoc(doc(db, "blogDetails", this.blogId[index]));
+        alert("Delete successfully!");
+        this.$router.push({ name: "myBlogs" });
+      } else {
+        return;
+      }
+    },
+  },
 
+  created() {
+    console.log(this.currentUser);
+    const q = query(
+      collection(db, "blogDetails"),
+      where("email", "==", this.currentUser.slice(1, -1))
+    );
+    onSnapshot(q, (querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        this.blogs.push(doc.data());
+        this.blogId.push(doc.id);
+      });
+      console.log(
+        "blogs",
+        querySnapshot.docs.map((doc) => doc.id),
+        querySnapshot.docs.map((doc) => doc.data())
+      );
+    });
+
+  },
 };
 </script>
 
 <style scoped>
 .container {
   padding: 10vh;
-  height: 60%;
+  height: 80%;
   width: 100%;
   display: flex;
   background-size: 100% 100%;
   background-image: url("../../assets/image/about.jpeg");
-}
-
-table,
-th,
-td {
-  border: 1px solid #ddd;
-  border-collapse: collapse;
-}
-
-th {
-  height: 70px;
-  background-color: rgb(121, 145, 223);
-  color: white;
-}
-
-td {
-  height: 35px;
-}
-
-tr:nth-child(even) {
-  background-color: #f2f2f2;
-}
-
-tr:hover {
-  background-color: rgb(197, 162, 65);
-}
-
-.btn {
-  width: 50%;
-  padding: 10px;
-  border: 0ch;
-  border-radius: 30px;
-  cursor: pointer;
-  color: black(237, 209, 96, 0.669);
 }
 
 table,
@@ -134,7 +133,7 @@ td {
   height: 300px;
 }
 
-tr{
+tr:nth-child(even) {
   background-color: #f2f2f2;
 }
 
@@ -165,7 +164,7 @@ tr:hover {
     
 
 }
-.auth, .venue, .date {
+.venue, .date {
 
     font-size: 15px;
     color: rgb(83, 59, 41);
@@ -185,5 +184,9 @@ p {
     
 }
 
+button {
+    position:relative;
+    left: 800px;
+}
 
 </style>

@@ -1,7 +1,7 @@
 <template>
 <navigationBar/>
   <div class="container-profile">
-    <h1>Greetings, User {{ name1.slice(1, -1) }} !</h1>
+    <h1>Greetings, {{ name1.slice(1, -1) }} !</h1>
     <h2>My account</h2>
     <p>View and edit your personal info below.</p>
 
@@ -55,6 +55,11 @@
           <option value="RVRC">RVRC</option>
           <option value="Sheares Hall">Sheares Hall</option>
           <option value="Tembusu RC">Tembusu RC</option>
+          <option value="Tembusu RC">Temasek Hall</option>
+          <option value="Tembusu RC">KEVII Hall</option>
+          <option value="Tembusu RC">PGP</option>
+          <option value="Tembusu RC">RC4</option>
+          <option value="Tembusu RC">CAPT</option>
         </select>
       </div>
       <br />
@@ -82,7 +87,21 @@
           value="My Booking History"
         />
       </div>
+      <br>
     </form>
+    <form class="info" @submit.prevent="checkBlogs">
+      <div class="input">
+        <input
+          class="btn"
+          id="currentbook"
+          type="submit"
+          value="My Blogs"
+        />
+      </div>
+    </form>
+
+
+    
 
     <br />
     <hr />
@@ -219,6 +238,18 @@ export default {
     async checkbooking() {
       try {
         this.$router.push({ name: "currentBook" });
+      } catch (error) {
+        console.log(error);
+        switch (error.code) {
+          default:
+            alert("Something went wrong");
+        }
+        return;
+      }
+    },
+    async checkBlogs() {
+      try {
+        this.$router.push({ name: "myBlogs" });
       } catch (error) {
         console.log(error);
         switch (error.code) {
