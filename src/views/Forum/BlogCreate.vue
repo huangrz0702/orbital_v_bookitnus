@@ -2,14 +2,11 @@
   <navigationBar />
   <div class="blog" >
     <div class="page">
-      <div class="container-header">
-        <p class="header">Create A Blog</p>
-      </div>
 
       <div class="edit">
         <div class="inputbox">
           <div class="inputbox">
-            <label>Blog Title: </label>
+              <label>Blog Title: </label>
             <input
               type="text"
               placeholder="e.g. Basketball Experience"
@@ -18,19 +15,35 @@
             />
           </div>
           <div class="inputbox">
-            <label>Place: </label>
-            <input placeholder="e.g. PGP" required v-model="venue" />
+            <label>Venue</label>
+            <select required v-model="venue">
+              <option value="null" selected disabled>Please select a venue</option>
+              <option value="Raffles Hall">Raffles Hall</option>
+              <option value="RVRC">RVRC</option>
+              <option value="Sheares Hall">Sheares Hall</option>
+              <option value="Tembusu RC">Tembusu RC</option>
+              <option value="RC4">RC4</option>
+              <option value="USC">USC</option>
+              <option value="PGP">PGP</option>
+              <option value="UT">Utown</option>
+            </select>
           </div>
           <div class="inputbox">
             <label>Date: </label>
-            <input placeholder="e.g. June 1st" required v-model="date" />
+            <input type = "date" placeholder="e.g. June 1st" required v-model="date" />
           </div>
         </div>
       </div>
 
-      <div class="textcontainer">
-        <textarea required v-model="content" />
-      </div>
+    <div class="editcontainer">
+      <QuillEditor
+        ref="qeditor"
+        class="editor"
+        theme="snow"
+        toolbar=""
+        @ready="onEditorReady($event)"
+      />
+    </div>
 
       <div class="blog-actions">
         <button class="btn" @click = "publish">Publish Blog</button>
@@ -51,6 +64,12 @@ export default {
     navigationBar
   },
 
+  computed: {
+    qeditor() {
+      return this.$refs.qeditor.getQuill();
+    },
+  },
+
   data() {
     return {
       email:localStorage.getItem("currentuser").slice(1, -1),
@@ -62,6 +81,13 @@ export default {
   },
 
   methods: {
+    onEditorReady() {
+      console.log(this.qeditor);
+      // this.qeditor.setText("Please enter enter your blogs here...")
+      this.qeditor.root.dataset.placeholder =
+        "Please enter your thoughts...";
+    },
+
     async publish() {
       try {
         const data = {
@@ -97,23 +123,25 @@ export default {
 <style lang="scss" scoped>
 .header {
   float: left;
-  color: black;
-  height: 80px;
+  color: rgb(128, 101, 66);
+  height: 20px;
   display: flex;
   align-items: center;
   font-size: 25px;
 }
 .container-header {
-  background-color: rgba(237, 209, 96, 0.669);
+  background-color: antiquewhite;
   padding: 2vh 10vw 2vh 10vw;
   display: flex;
 }
 .page {
-  background: url(../../assets/image/profile.png);
+  background: url(../../assets/image//NUS3.jpeg);
   background-attachment: fixed;
   background-size: cover;
+  
   padding-bottom: 50px;
   font-size: 15px;
+  
 }
 .edit {
   display: flex;
@@ -125,34 +153,46 @@ export default {
   margin: 10px;
 }
 .inputbox label {
-  text-align: justify;
+  text-align: left;
   display: inline-block;
-  width: 200px;
-  vertical-align: middle;
+  width: 100px;
+  vertical-align: left;
+  font-weight:900;
+  color: antiquewhite;
+
 }
 
 input {
   border: 0;
-  background-color: white;
+  background-color: antiquewhite;
   width: 250px;
   height: 35px;
   font-size: 13px;
   padding: 5px;
 }
 
-.textcontainer {
-  textarea {
-    width: 80%;
-    margin: 1% 10%;
-    height: 50vh;
-    border-style: solid;
-    border-width: 2px;
-    border-color: black;
-    padding-bottom: 40px;
-    align-items: center;
-    text-align: center;
-    justify-content: center;
-  }
+select {
+  border: 10px;
+  background-color: antiquewhite;
+  width: 250px;
+  height: 35px;
+  font-size: 13px;
+  padding: 5px;
+
+}
+
+.editcontainer {
+  width: 80%;
+  margin: 1% 10%;
+  height: 50vh;
+  border-style: solid;
+  border-width: 2px;
+  border-color: white;
+  padding-bottom: 40px;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  background-color: antiquewhite;
 }
 
 .btn {
@@ -162,6 +202,7 @@ input {
   border-radius: 30px;
   cursor: pointer;
   color: black(237, 209, 96, 0.669);
+  background-color: antiquewhite;
 }
 
 .blog-actions {

@@ -12,6 +12,8 @@ import Filters2F from "./components/Filters2F.vue";
 import PopUp from "./components/PopupF.vue";
 import { VueperSlides, VueperSlide } from 'vueperslides'
 import 'vueperslides/dist/vueperslides.css'
+import { QuillEditor } from "@vueup/vue-quill";
+import "@vueup/vue-quill/dist/vue-quill.snow.css";
 
 const app = createApp(App)
 
@@ -26,6 +28,7 @@ app.component("Filters2F",Filters2F);
 app.component("PopUp",PopUp);
 app.component("VueperSlides",VueperSlides)
 app.component("VueperSlide",VueperSlide)
+app.component("QuillEditor", QuillEditor);
 
 
 app.mount('#app')
