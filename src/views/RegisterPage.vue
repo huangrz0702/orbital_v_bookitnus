@@ -16,7 +16,7 @@
           <i class="gg-mail"></i>
           <input
             type="email"
-            placeholder="Email"
+            placeholder="Please enter a legitimate email address"
             v-model="register_form.email"
             required
           />
@@ -25,7 +25,7 @@
         <div class="input">
           <i class="gg-lock"></i>
           <input
-            type="password"
+            type="password must contain at least 6 characters"
             placeholder="Password"
             v-model="register_form.password"
             required
