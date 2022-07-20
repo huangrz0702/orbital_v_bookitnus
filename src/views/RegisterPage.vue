@@ -25,8 +25,8 @@
         <div class="input">
           <i class="gg-lock"></i>
           <input
-            type="password must contain at least 6 characters"
-            placeholder="Password"
+            type="password"
+            placeholder="Password must contain at least 6 characters"
             v-model="register_form.password"
             required
           />
@@ -183,7 +183,7 @@ h2 {
   padding: 4px 4px 4px 30px;
   height: 50px;
   border-radius: 10px;
-  font-size: 15px;
+  font-size: 12px;
   background-color: -internal-light-dark(
     rgb(232, 240, 254),
     rgba(70, 90, 126, 0.4)
