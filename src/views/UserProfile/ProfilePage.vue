@@ -55,11 +55,6 @@
           <option value="RVRC">RVRC</option>
           <option value="Sheares Hall">Sheares Hall</option>
           <option value="Tembusu RC">Tembusu RC</option>
-          <option value="Tembusu RC">Temasek Hall</option>
-          <option value="Tembusu RC">KEVII Hall</option>
-          <option value="Tembusu RC">PGP</option>
-          <option value="Tembusu RC">RC4</option>
-          <option value="Tembusu RC">CAPT</option>
         </select>
       </div>
       <br />
@@ -78,13 +73,6 @@
           id="currentbook"
           type="submit"
           value="My Current Booking(s)"
-        />
-        <br />
-        <input
-          class="btn"
-          id="bookhistory"
-          type="submit"
-          value="My Booking History"
         />
       </div>
       <br>
