@@ -118,7 +118,7 @@ th {
 }
 
 td {
-  height: 300px;
+  height:400px;
 }
 
 tr:nth-child(even) {

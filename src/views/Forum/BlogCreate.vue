@@ -1,6 +1,6 @@
 <template>
   <navigationBar />
-  <form class="blog" @submit.prevent="publish">
+  <div class="blog" >
     <div class="page">
       <div class="container-header">
         <p class="header">Create A Blog</p>
@@ -25,17 +25,6 @@
             <label>Date: </label>
             <input placeholder="e.g. June 1st" required v-model="date" />
           </div>
-         <div >
-           <button @click="click1">choose a photo</button>
-           <input type="file" ref="input1"
-            style="display: none"
-            @change="previewImage" accept="image/*" >                
-         </div>
- 
-       <div v-if="imageData!=null">                     
-          <img class="preview" height="268" width="356" :src="img1">
-       <br>
-       </div>  
         </div>
       </div>
 
@@ -44,18 +33,18 @@
       </div>
 
       <div class="blog-actions">
-        <button class="btn" type="submit" @click = "publish">Publish Blog</button>
+        <button class="btn" @click = "publish">Publish Blog</button>
       </div>
     </div>
-  </form>
+  </div>
 </template>
 
 <script>
 import navigationBar from '../../components/Navigation.vue';
-import {auth, storage} from '@/firebase/firebaseinit'
-import { ref, uploadBytes } from "firebase/storage";
+//import {auth} from '@/firebase/firebaseinit'
+//import { ref, uploadBytes } from "firebase/storage";
 import { db } from "../../firebase/firebaseinit";
-import { collection, addDoc, doc, setDoc } from "firebase/firestore";
+import { collection, setDoc, doc} from "firebase/firestore";
 
 export default {
   Component: {
@@ -64,75 +53,38 @@ export default {
 
   data() {
     return {
-      email:auth.currentUser.email,
+      email:localStorage.getItem("currentuser").slice(1, -1),
       title: '',
       venue: '',
       date: '',
       content: '',
-      img1: '',
-      imageData: null
     };
   },
 
   methods: {
-
-  click1() {
-    this.$refs.input1.click()   
-  },
-  previewImage(event) {
-    this.uploadValue=0;
-    this.img1=null;
-    this.imageData = event.target.files[0];
-    this.onUpload();
-  },
-  onUpload(){
-    const imgRef = ref(
-      storage,
-      "blogs/" + auth.currentUser.email + this.imageData
-    );
-    this.img1=this.imageData;
-    const storageRef= ref(`${this.imageData.name}`).put(this.imageData);
-    storageRef.on(`state_changed`,snapshot=>{
-    this.uploadValue = (snapshot.bytesTransferred/snapshot.totalBytes)*100;
-      }, error=>{console.log(error.message)},
-    ()=>{this.uploadValue=100;
-        storageRef.snapshot.ref.getDownloadURL().then((url)=>{
-            this.img1 =url;
-            console.log(this.img1)
-          });
-        }      
-      );
-    uploadBytes(imgRef, this.file).then((snapshot) => {
-      console.log("Uploaded a blob or file!");
-      console.log(snapshot);
-    });
-    },
     async publish() {
       try {
-        const res = await addDoc(collection(db, "blogDetails"), {
-          email: auth.currentUser.email,
+        const data = {
+          email: localStorage.getItem("currentuser").slice(1, -1),
           title: this.title,
           venue: this.venue,
           date: this.date,
           content: this.content,
-        })
-        await setDoc(
-          doc(db, "users/" + auth.currentUser.email + "/blogDetails", res.id),
-          {
-            id: res.id,
-          }
-        ).then(() => {
-          alert("Publish successfully!");
-      });
-        this.$router.push({ name: "indivBlogPage", params: { id: res.id } });
+        }
+        const newBlogRef = doc(collection(db, "blogDetails"))
+        await setDoc(newBlogRef, data);
+        console.log(newBlogRef.id);
+        alert("Publish successfully!");
+
+        this.$router.push({ name: "indivBlogPage", params: { id: newBlogRef.id } });
+
       } catch (error) {
         console.log(error);
         switch (error.code) {
           default:
-            alert("Please log in first!");
-            this.$router.push({ name: "LoginPage" });
+            alert("something went wrong");
+            this.$router.push({ name: "HomePage" });
         }
-        return;
       } 
     },
   }
