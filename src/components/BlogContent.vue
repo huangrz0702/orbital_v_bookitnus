@@ -1,34 +1,34 @@
 <template>
-<navigationBar />
-<router-link class="link" :to="{ name: 'BlogMain' }">back</router-link>
-<BlogContent :blog="blog" v-for="(blog, index) in sampleBlogContent" :key="index" />
+  <div class="message-wrapper">
+    <div class="message-content">
+      <h1>{{blog.title}}</h1>
+      <h3>author:{{blog.email}} ------ date: {{blog.date}} ------ location:{{blog.venue}}</h3>
+      <br />
+      <h4>Blog content:</h4>
+      <p>
+        <br />
+        {{blog.content}}
+        is very clean and nice.The equipments are quite new :)
+        <br />
+        As a resident I really like this place because I can enjoy the nice <br />
+        view while doing things. Feels really great to work with a view. <br />
+        The picture below is taken when I was at this place. <br />
+        10/10 would recommend! <br />
+        :)
+      </p>
+    </div>
 
+    <div class="photo">
+      <img :src="require(`../assets/blogCards/${blog.cover}.jpeg`)" alt=""/>
+    </div>
+  </div>
 </template>
 
 <script>
-import navigationBar from '../../components/Navigation.vue';
-import BlogContent from "../../components/BlogContent.vue";
 export default {
-  name: "sampleBlogPage",
-
-  Components: {
-    BlogContent,
-    navigationBar
-  },
-  data() {
-      return {
-          sampleBlogContent: [
-              { title: "Raffles hall gym is awesome!", email: "rafflesboy@gmail.com", cover: "1", date: "June 6 2022", venue:"Raffles Hall",
-                    content: "Raffles Hall gym"},
-              { title: "Loving RVRC's environment",  email: "rvrcgirl@gmail.com", cover: "2", date: "June 14 2022", venue: "RVRC",
-                    content: "RVRC"},
-              { title: "Sheares Hall function room review", email: "shearesboy@gmail.com", cover: "3", date: "June 20 2022", venue: "Sheares Hall",
-                    content: "Sheares Hall function room"},
-              { title: "RC4 music room", email: "rc4bird@gmail.com", cover: "4", date: "June 25 2022", venue: "RC4",
-                    content:"RC4 music room" },
-          ]
-      };
-  },
+  name: 'BlogContent',
+  props: ['blog'],
+  Components: {},
 };
 </script>
 
@@ -88,7 +88,7 @@ export default {
       position: relative;
       font-size: 12px;
       left: -200px;
-      margin-top: 10px;
+      margin-top: 100px;
       padding-bottom: 2px;
       border-bottom: 1px solid;
       &:hover {

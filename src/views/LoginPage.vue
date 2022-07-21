@@ -11,12 +11,6 @@
               >Register</router-link
             >
           </p>
-          <p class="register">
-            Are you an admin?
-            <router-link class="router-link" to="/AdHomePage"
-              >Go to admin login</router-link
-            >
-          </p>
           <h2>Login</h2>
           <div class="input">
             <i class="gg-mail"></i>
@@ -159,6 +153,14 @@ p {
   height: 50px;
   border-radius: 10px;
   font-size: 15px;
+}
+
+.input .gg-lock  {
+  left : -10px;
+}
+
+.input .gg-mail  {
+  left : -12px;
 }
 
 .btn {
