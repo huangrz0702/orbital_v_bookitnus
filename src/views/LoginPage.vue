@@ -11,12 +11,6 @@
               >Register</router-link
             >
           </p>
-          <p class="register">
-            Are you an admin?
-            <router-link class="router-link" to="/AdHomePage"
-              >Go to admin login</router-link
-            >
-          </p>
           <h2>Login</h2>
           <div class="input">
             <i class="gg-mail"></i>
