@@ -6,6 +6,7 @@ import "./assets/icons/index";
 require("vue-ionicons/ionicons.css");
 import navigationBar from './components/Navigation.vue'
 import BlogCard from "./components/BlogCard.vue";
+import BlogContent from "./components/BlogContent.vue";
 import FacCard from "./components/FacCard.vue";
 import FiltersF from "./components/FiltersF.vue";
 import Filters2F from "./components/Filters2F.vue";
@@ -22,6 +23,7 @@ app.use(router)
 app.component("navigationBar", navigationBar);
 app.component("svg-icon", SvgIcon);
 app.component("BlogCard", BlogCard);
+app.component("BlogContent", BlogContent);
 app.component("FacCard", FacCard);
 app.component("FiltersF",FiltersF);
 app.component("Filters2F",Filters2F);

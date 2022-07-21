@@ -191,6 +191,18 @@ h2 {
   color: -internal-light-dark(black, white) !important;
 }
 
+.input .gg-lock,.gg-nametag  {
+  left : -10px;
+}
+
+.input .gg-mail{
+  left : -12px;
+}
+
+.input .gg-sketch{
+  left : -18px;
+}
+
 select {
   width: 100%;
   border: none;

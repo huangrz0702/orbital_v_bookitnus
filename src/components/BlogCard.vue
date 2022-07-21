@@ -4,18 +4,22 @@
     <div class="info">
         <h4>{{ post.blogTitle}}</h4>
         <h6>Posted on: {{ post.blogDate}}</h6>
-        <router-link class="link" to="/sampleBlogPage"> View The Post</router-link>
     </div>
   </div>
 </template>
 
 <script>
-
+//import BlogContent from "./BlogContent.vue";
 export default {
   name: 'BlogCard',
   props: ['post'],
-  Components: {},
-}
+  Components: {
+
+  },
+
+  }
+
+
 </script>
 
 <style lang="scss" scoped>

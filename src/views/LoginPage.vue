@@ -155,6 +155,14 @@ p {
   font-size: 15px;
 }
 
+.input .gg-lock  {
+  left : -10px;
+}
+
+.input .gg-mail  {
+  left : -12px;
+}
+
 .btn {
   width: 30%;
   padding: 10px;
