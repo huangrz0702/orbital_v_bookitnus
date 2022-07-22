@@ -77,7 +77,7 @@ export default {
       if (confirm("Are you sure? Deletion is irreversible.")) {
         deleteDoc(doc(db, "blogDetails", this.blogId[index]));
         alert("Delete successfully!");
-        this.$router.push({ name: "myBlogs" });
+        this.$router.push({ name: "ProfilePage" });
       } else {
         return;
       }
