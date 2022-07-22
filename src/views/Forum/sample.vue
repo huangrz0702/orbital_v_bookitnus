@@ -1,6 +1,6 @@
 <template>
 <navigationBar />
-<router-link class="link" :to="{ name: 'BlogMain' }">back</router-link>
+
 <BlogContent :blog="blog" v-for="(blog, index) in sampleBlogContent" :key="index" />
 
 </template>

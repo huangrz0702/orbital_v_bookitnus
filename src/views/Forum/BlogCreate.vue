@@ -182,7 +182,7 @@ select {
 }
 
 .editcontainer {
-  width: 80%;
+  width: 60%;
   margin: 1% 10%;
   height: 50vh;
   border-style: solid;
@@ -193,6 +193,8 @@ select {
   text-align: center;
   justify-content: center;
   background-color: antiquewhite;
+  position: relative;
+  left: 180px;
 }
 
 .btn {

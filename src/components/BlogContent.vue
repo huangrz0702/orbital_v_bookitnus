@@ -115,7 +115,7 @@ export default {
     height: 400px;
     width: 450px;
     position: relative;
-    left: 500px;
+    left: 680px;
     display: float;
     object-fit: cover;
   }

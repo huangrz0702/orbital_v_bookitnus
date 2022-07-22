@@ -8,7 +8,7 @@
             <div class="blog-cards">
                 <BlogCard :post="post" v-for="(post, index) in sampleBlogCards" :key="index" />
             </div>
-            <router-link class="link" to = '/sampleBlogPage'> View All Recommended Post</router-link>
+            <router-link class="link" to = '/sampleBlogPage'> View All Recommended Blogs</router-link>
             <br>
             <br>
             <router-link class="link" to="/blogPreviews">Read More Posts</router-link>
