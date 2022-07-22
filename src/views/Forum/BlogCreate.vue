@@ -70,16 +70,6 @@ export default {
     },
   },
 
-  data() {
-    return {
-      email:localStorage.getItem("currentuser").slice(1, -1),
-      title: '',
-      venue: '',
-      date: '',
-      content: '',
-    };
-  },
-
   methods: {
     onEditorReady() {
       console.log(this.qeditor);
@@ -88,19 +78,33 @@ export default {
         "Please enter your thoughts...";
     },
 
+
     async publish() {
+      function substr(content) {
+          var str = "";
+          var i = 0;
+          if ((content[0] == "<") && (content[1] == "p") && (content[2] == ">")) {
+            for (i=3;i<=content.length-5;i++) str += content[i];
+          }
+          else {
+            str = content;
+          }
+          return str;
+      }
       try {
         const data = {
           email: localStorage.getItem("currentuser").slice(1, -1),
           title: this.title,
           venue: this.venue,
           date: this.date,
-          content: this.content,
+          content: substr(this.qeditor.root.innerHTML),
         }
+
         const newBlogRef = doc(collection(db, "blogDetails"))
         await setDoc(newBlogRef, data);
         console.log(newBlogRef.id);
         alert("Publish successfully!");
+        this.qeditor.setText("");
 
         this.$router.push({ name: "indivBlogPage", params: { id: newBlogRef.id } });
 
@@ -182,7 +186,7 @@ select {
 }
 
 .editcontainer {
-  width: 60%;
+  width: 80%;
   margin: 1% 10%;
   height: 50vh;
   border-style: solid;
@@ -193,8 +197,8 @@ select {
   text-align: center;
   justify-content: center;
   background-color: antiquewhite;
-  position: relative;
-  left: 180px;
+  //position: relative;
+  //left: 180px;
 }
 
 .btn {
